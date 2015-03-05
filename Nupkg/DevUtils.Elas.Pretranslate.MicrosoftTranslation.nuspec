@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata minClientVersion="2.8.1">
+		<frameworkAssemblies></frameworkAssemblies>
+		<dependencies>
+			<dependency id="DevUtils.Elas.Core" version="0.0.5" />
+		</dependencies>
+		<id>DevUtils.Elas.Pretranslate.MicrosoftTranslation</id>
+		<authors>DevUtils</authors>
+		<version>0.0.7</version>
+		<title>DevUtils ELAS for Microsoft Translation</title>
+		<copyright>Copyright © 2015 DevUtils</copyright>
+		<tags>ELAS Localization Culture Languages Microsoft Translation</tags>
+		<projectUrl>http://devutils.net/Elas</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<summary>The DevUtils ELAS for Microsoft Translation includes an extension for DevUtils ELAS Core that helps create simpler translation workflows.</summary>
+		<description>
+			The DevUtils ELAS for Microsoft Translation includes an extension for DevUtils ELAS Core that helps create simpler translation.
+			Get suggestions via integrated Microsoft Translator services (requires an active Internet connection). 
+			Integration with Microsoft Translator services gives you instant testing across multiple languages without the assistance of a human translator.
+		</description>
+		<releaseNotes>
+			fix error: An equivalent project (a project with the same global properties and tools version) is already present in the project collection, 
+			with the path "\.Elas\ElasConfiguration.props". To load an equivalent into this project collection, unload this project first.
+		</releaseNotes>
+	</metadata>
+	<files>
+		<file src="Content\Elas.Pretranslate.MicrosoftTranslation.txt" target="content\" />
+
+		<file src="..\Targets\Elas.Pretranslate.MicrosoftTranslation.targets" target="build\DevUtils.Elas.Pretranslate.MicrosoftTranslation.targets" />
+
+		<file src="..\Release\DevUtils.Elas.Pretranslate.MicrosoftTranslation.dll" target="build\DevUtils.Elas.Pretranslate.MicrosoftTranslation.dll" />
+		<file src="..\Release\DevUtils.Elas.Pretranslate.MicrosoftTranslation.xml" target="build\DevUtils.Elas.Pretranslate.MicrosoftTranslation.xml" />
+	</files>
+</package>

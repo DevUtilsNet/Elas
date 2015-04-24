@@ -6,4 +6,4 @@ Elas will help to you look to localization proccess from another side.
 
 _You can do a donation to me and my work._
 _It would be very nice of you :)_
-[![PayPal - The safer, easier way to pay online!](https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com)
+[![PayPal - The safer, easier way to pay online!](https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JUQ5XTT3ESQMS)

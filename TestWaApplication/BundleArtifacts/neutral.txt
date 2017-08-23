@@ -1,0 +1,5 @@
+MainPackage=Y:\ELAS\Dev\TestWaApplication\bin\Debug\TestWaApplication_1.0.0.0_Bundle\TestWaApplication_1.0.0.0_AnyCPU_Debug.appx
+SymbolPackage=Y:\ELAS\Dev\TestWaApplication\AppPackages\TestWaApplication_1.0.0.0_Debug_Test\TestWaApplication_1.0.0.0_AnyCPU_Debug.appxsym
+ResourcePack=Y:\ELAS\Dev\TestWaApplication\bin\Debug\TestWaApplication_1.0.0.0_Bundle\TestWaApplication_1.0.0.0_language-de.appx
+ResourcePack=Y:\ELAS\Dev\TestWaApplication\bin\Debug\TestWaApplication_1.0.0.0_Bundle\TestWaApplication_1.0.0.0_language-mn-cyrl.appx
+ResourcePack=Y:\ELAS\Dev\TestWaApplication\bin\Debug\TestWaApplication_1.0.0.0_Bundle\TestWaApplication_1.0.0.0_language-ru.appx

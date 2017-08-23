@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns:elas="urn:devutils:names:tc:xliff:document:1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="..\LinkedResources.resx" source-language="en-US" target-language="ru-RU" datatype="resx">
+		<header>
+			<tool tool-version="1.0.10.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=1.0.10.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" />
+		</header>
+		<body>
+			<group id="Category">
+				<trans-unit id="Category_Docking" translate="yes">
+					<source xml:space="preserve">Docking</source>
+					<target xml:space="preserve" state="needs-review-translation">Стыковка</target>
+				</trans-unit>
+			</group>
+			<trans-unit id="String1" translate="yes">
+				<source xml:space="preserve">Properties/LinkedResources/String1</source>
+				<target xml:space="preserve" state="needs-review-translation">Свойства/LinkedResources/строка1</target>
+				<note>Properties/LinkedResources/Comment1</note>
+			</trans-unit>
+			<trans-unit id="String2" translate="yes">
+				<source xml:space="preserve">Properties/LinkedResources/String2</source>
+				<target xml:space="preserve" state="needs-review-translation">Свойства/LinkedResources/строка2</target>
+				<note>Properties/LinkedResources/Comment2</note>
+			</trans-unit>
+			<trans-unit id="String3" translate="yes">
+				<source xml:space="preserve">123456</source>
+				<target xml:space="preserve" state="needs-review-translation">123456</target>
+			</trans-unit>
+		</body>
+	</file>
+	<file original="..\LinkedResources.resx" source-language="en-US" target-language="de-DE" datatype="resx">
+		<header>
+			<tool tool-version="1.0.10.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=1.0.10.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" />
+		</header>
+		<body>
+			<group id="Category">
+				<trans-unit id="Category_Docking" translate="yes">
+					<source xml:space="preserve">Docking</source>
+					<target xml:space="preserve" state="needs-review-translation">Docking</target>
+				</trans-unit>
+			</group>
+			<trans-unit id="String1" translate="yes">
+				<source xml:space="preserve">Properties/LinkedResources/String1</source>
+				<target xml:space="preserve" state="needs-review-translation">Eigenschaften/LinkedResources/String1</target>
+				<note>Properties/LinkedResources/Comment1</note>
+			</trans-unit>
+			<trans-unit id="String2" translate="yes">
+				<source xml:space="preserve">Properties/LinkedResources/String2</source>
+				<target xml:space="preserve" state="needs-review-translation">Eigenschaften/LinkedResources/String2</target>
+				<note>Properties/LinkedResources/Comment2</note>
+			</trans-unit>
+			<trans-unit id="String3" translate="yes">
+				<source xml:space="preserve">123456</source>
+				<target xml:space="preserve" state="needs-review-translation">123456</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

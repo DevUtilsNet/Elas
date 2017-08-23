@@ -1,0 +1,428 @@
+﻿using System;
+using System.Collections.Generic;
+using DevUtils.Elas.Tasks.Core.Loyc;
+using DevUtils.Elas.Tasks.Core.Loyc.Extensions;
+
+namespace DevUtils.Elas.Tasks.Core.ResourceCompile
+{
+	using TT = RCTokenType;
+
+	abstract partial class RCParser
+	{
+		LLLPG (parser(laType(TT), matchType(TT), allowSwitch(true), setType(HashSet<TT>)))
+		{
+			alias(',' = TT.Comma);
+			alias('{' = TT.LBrace);
+			alias('}' = TT.RBrace);
+
+			rule PPLine @[
+				TT.Preprocessor {_lexer.IgnorePP = true;} (~TT.Newline | (TT.ReverseSolidus TT.Newline))*
+			];
+
+			partial rule PPParse @[
+				PPLine
+			];
+
+			rule Token<TT> ResourceIdentifier @[
+				ret := (TT.Keyword | TT.Number) {return ret;}
+			];
+
+			rule Token<TT> PrimaryExpression @[
+				{Token<TT> ret;}
+				(ret = ResourceIdentifier | ret = TT.LParen Expression t:=TT.RParen {ret.EndIndex = t.EndIndex;})
+				{return ret;}
+			];
+
+			rule Token<TT> PostfixExpression @[
+				{Token<TT> ret;}
+				ret = PrimaryExpression greedy(t := (TT.Inc | TT.Dec) {ret.EndIndex = t.EndIndex;})?
+				{return ret;}
+			];
+
+			rule Token<TT> UnaryExpressionNotPlusMinus @[
+				{Token<TT> ret,l;}
+				( ret = TT.NotBits l = UnaryExpression | ret = TT.Not l = UnaryExpression | ret = PostfixExpression {l = ret;} )
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> UnaryExpression @[
+				{Token<TT> ret,l;}
+				( ret = TT.Inc l = UnaryExpression
+				| ret = TT.Dec l = UnaryExpression
+				| ret = TT.Minus l = UnaryExpression
+				| ret = TT.Plus l = UnaryExpression
+				| ret = UnaryExpressionNotPlusMinus {l = ret;}
+				)
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> MultiplicativeExpression @[
+			  {Token<TT> ret,l;}
+				ret = UnaryExpression {l = ret;} ((TT.Mul | TT.Div | TT.Mod) l = UnaryExpression)*
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> AdditiveExpression @[
+				{Token<TT> ret,l;}
+				ret = MultiplicativeExpression {l = ret;} greedy((TT.Plus | TT.Minus) l = MultiplicativeExpression)*
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> ShiftExpression @[
+				{Token<TT> ret,l;}
+				ret = AdditiveExpression {l = ret;} ((TT.ShiftLeft | TT.ShiftRight) l = AdditiveExpression)*
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> RelationalExpression @[
+				{Token<TT> ret,l;}
+				ret = ShiftExpression {l = ret;} ((TT.LessThan | TT.GreaterThan | TT.LessThanEqual | TT.GreaterThanEqual) l = ShiftExpression)*
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> EqualityExpression @[
+				{Token<TT> ret,l;}
+				ret = RelationalExpression {l = ret;} ((TT.Equal | TT.UnEqual) l = RelationalExpression)*
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> AndExpression @[
+				{Token<TT> ret,l;}
+				ret = EqualityExpression {l = ret;} (TT.AndBits l = EqualityExpression)*
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> ExclusiveOrExpression @[
+				{Token<TT> ret,l;}
+				ret = AndExpression {l = ret;} (TT.XorBits l = AndExpression)*
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> InclusiveOrExpression @[
+				{Token<TT> ret,l;}
+				ret = ExclusiveOrExpression {l = ret;} (TT.OrBits l = ExclusiveOrExpression)*
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> LogicalAndExpression @[
+				{Token<TT> ret,l;}
+				ret = InclusiveOrExpression {l = ret;} (TT.And l = InclusiveOrExpression)*
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> LogicalOrExpression @[
+				{Token<TT> ret,l;}
+				ret = LogicalAndExpression {l = ret;} (TT.Or l = LogicalAndExpression)*
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule Token<TT> ConditionalExpression @[
+				ret := LogicalOrExpression
+				{return ret;}
+			];
+
+			rule Token<TT> Expression @[
+				ret := ConditionalExpression
+				{return ret;}
+			];
+
+			rule Token<TT> ResourceIdentifierStatement @[
+				{Token<TT> ret = new Token<TT>(TT.EOF, -1, -1),l; var sa = false;}
+				greedy((l = Expression | l = ResourceString) {if(!sa){ret = l; sa = true;}})+
+				{ret.EndIndex = l.EndIndex; return ret;}
+			];
+
+			rule RawData @[
+				( OpenDefinition 
+				~('{' | TT.Begin | '}' | TT.End)* 
+				  CloseDefinition
+				)
+			];
+
+			rule FileName @[
+				TT.String | ({ SetRawToken(true); } TT.RawKeyword { SetRawToken(false); })
+			];
+
+			rule DataBlock @[
+				( RawData 
+				| FileName
+				)
+			];
+
+			rule OpenDefinition @[
+				('{' | TT.Begin)
+			];
+
+			rule Token<TT> CloseDefinition @[
+				ret := ('}' | TT.End) {return ret;}
+			];
+
+			rule Token<TT> ResourceString @[
+				s := (TT.String | TT.RString) {return s;}
+			];
+
+			partial rule LanguageEntry @[
+				TT.Language pl := ResourceIdentifier ',' sl := ResourceIdentifier
+				{OnLanguageEntry(pl, sl);}
+			];
+
+			static readonly Dictionary<string, TT> _stringTable = new Dictionary<string, TT>{
+				{"end", TT.End},
+				{"begin", TT.Begin}
+			};
+			partial rule StringTable @[
+				// TT.StringTable
+				{var kp = SetKeywordParser(_stringTable); }
+				( CommonResourceAttributes? 
+				  OpenDefinition 
+				  StringTableEntry* 
+					ret := CloseDefinition
+				)
+				{SetKeywordParser(kp); _ret = ret;}
+			];
+
+			rule StringTableEntry @[
+				id := ResourceIdentifier ','? s := ResourceString
+				{OnStringTableEntry(id, s);}
+			];
+
+			static readonly Dictionary<string, TT> _skippedDefinedResource = new Dictionary<string, TT>{
+				{"end", TT.End},
+				{"begin", TT.Begin}
+			};
+			partial rule SkippedDefinedResource @[
+				TT.RawKeyword ({ SetRawToken(false); var kp = SetKeywordParser(_skippedDefinedResource); } CommonResourceAttributes? DataBlock { SetKeywordParser(kp); SetRawToken(true); })
+			];
+
+			rule LoadAttribute @[
+				TT.Preload | TT.LoadOnCall
+			];
+
+			rule MemoryAttribute @[
+				TT.Fixed | TT.Moveable | TT.Discardable | TT.Pure | TT.Impure | TT.Shared | TT.NonShared
+			];
+
+			rule CommonResourceAttributes @[
+				LoadAttribute | MemoryAttribute
+			];
+
+			partial rule ToolbarResource @[
+				TT.Toolbar {var kp = SetKeywordParser(_resourceEntry);} (CommonResourceAttributes? TT.Number ',' TT.Number RawData) {SetKeywordParser(kp);}
+			];
+
+			rule ResourceCharacteristics @[
+				TT.Characteristics Expression
+			];
+
+			rule ResourceVersion @ [
+				TT.Version Expression
+			];
+
+			rule DialogCommonResourceInfo @[
+				( LanguageEntry
+				| ResourceVersion
+				| TT.Style Expression
+				| TT.ExStyle Expression
+				| ResourceCharacteristics
+				| TT.Caption ResourceString
+				| TT.Menu ResourceIdentifier
+				| TT.Class ResourceIdentifier
+				| TT.Font TT.Number ',' TT.String (',' TT.Number ',' TT.Number ',' ResourceIdentifier)?
+				)
+			];
+
+			rule DialogExGenericControlTrailing @[
+			];
+
+			// CONTROL controlText, id, className, style
+			rule DialogGenericControl @[
+				ct := TT.Control c := ResourceIdentifierStatement ',' id := Expression ',' TT.String ',' Expression 
+				',' Expression ',' Expression ',' Expression ',' Expression
+				(',' Expression)*
+				('{' Expression (',' Expression)* '}')?
+				{OnDialogControl(ct, c, id);}
+			];
+
+			rule DialogStaticControl @[
+				ct := (TT.LText | TT.RText | TT.CText)
+				c := ResourceIdentifierStatement ',' id := Expression
+				{OnDialogControl(ct, c, id);}
+			];
+
+			rule DialogButtonControl @[
+				ct := ( TT.State3,
+				| TT.PushBox,
+				| TT.CheckBox,
+				| TT.GroupBox,
+				| TT.Auto3State,
+				| TT.PushButton,
+				| TT.UserButton,
+				| TT.RadioButton,
+				| TT.AutoCheckBox,
+				| TT.DefPushButton,
+				| TT.AutoRadioButton
+				)
+				c := ResourceIdentifierStatement ',' id := Expression
+				{OnDialogControl(ct, c, id);}
+			];
+
+			rule DialogEditControl @[
+				( TT.EditText
+				| TT.BEdit
+				| TT.HEdit
+				| TT.IEdit
+				)
+				Expression
+			];
+
+			rule DialogCommonControl @[
+				( TT.ComboBox
+				| TT.ListBox
+				)
+				Expression
+			];
+
+			rule DialogIconControl @[
+				TT.Icon ResourceIdentifierStatement ',' Expression
+			];
+
+			rule DialogScrollBarControl @[
+				TT.ScrollBar Expression
+			];
+
+			rule DialogConcreteControlDefinition @[
+				( DialogStaticControl
+				| DialogButtonControl
+				| DialogEditControl
+				| DialogCommonControl
+				| DialogIconControl
+				| DialogScrollBarControl
+				)
+				',' Expression ',' Expression ',' Expression ',' Expression
+				(',' Expression)*
+				('{' Expression (',' Expression)* '}')?
+			];
+
+			// nameID DIALOGEX x, y, width, height [ , helpID] [optional-statements]  {control-statements}
+			partial rule DialogResource @[
+				TT.Dialog 
+				{var kp = SetKeywordParser(_resourceEntry);}
+				(CommonResourceAttributes? 
+				  Expression ',' 
+				  Expression ',' 
+				  Expression ',' 
+				  Expression (',' Expression )? 
+				  DialogCommonResourceInfo*
+				  OpenDefinition (DialogGenericControl | DialogConcreteControlDefinition)* ret := CloseDefinition
+				)
+				{SetKeywordParser(kp); _ret = ret;}
+			];
+
+			partial rule DesignInfo @[
+				TT.DesignInfo 
+				{var kp = SetKeywordParser(_resourceEntry);}
+				( CommonResourceAttributes? 
+				  ((OpenDefinition 
+				  DesignInfoControlBlock* 
+				  CloseDefinition) | FileName)
+				)
+				{SetKeywordParser(kp);}
+			];
+
+			rule DesignInfoControlBlock @[
+				(RawData | (~('{' | TT.Begin | '}' | TT.End)))
+			];
+
+			rule CommonResourceInfo() @[
+				(ResourceCharacteristics
+				| LanguageEntry
+				| ResourceVersion
+				)
+			];
+
+			rule MenuItemOption @[
+				',' TT.Keyword
+			];
+
+			rule MenuItem @[
+				TT.Keyword (TT.Separator | (r:=ResourceString ',' id:=ResourceIdentifier { OnMenuItem(id, r); } MenuItemOption*))
+			];
+
+			partial rule PopupEntryBody() @[
+				OpenDefinition MenuEntryItem* CloseDefinition
+			];
+
+			extern rule OnPopupEntryBody(Token<TT> resourceString) @[
+				OpenDefinition MenuEntryItem* CloseDefinition
+			];
+
+			rule PopupEntry @[
+				TT.Popup r:=ResourceString MenuItemOption* OnPopupEntryBody(r)
+			];
+
+			rule MenuEntryItem @[
+				MenuItem | PopupEntry
+			];
+
+			partial rule MenuResource() @[
+				TT.Menu 
+				{var kp = SetKeywordParser(_resourceEntry);}
+				( CommonResourceAttributes? 
+				  CommonResourceInfo* 
+				  OpenDefinition 
+				  MenuEntryItem* 
+				  ret := CloseDefinition
+				)
+				{SetKeywordParser(kp); _ret = ret;}
+			];
+
+			rule AcceleratorEntry @[
+				ResourceIdentifierStatement ',' Expression (',' (TT.Keyword | TT.Control))+
+			];
+
+			partial rule AcceleratorResource @[
+				TT.Accelerators 
+				{var kp = SetKeywordParser(_resourceEntry);}
+				( CommonResourceAttributes? 
+				  CommonResourceInfo* 
+				  OpenDefinition 
+				  AcceleratorEntry* 
+				  CloseDefinition
+				)
+				{SetKeywordParser(kp);}
+			];
+
+			static readonly Dictionary<string, TT> _versionInfoResource = new Dictionary<string, TT>{
+				{"end", TT.End},
+				{"begin", TT.Begin},
+				{"block", TT.Block},
+				{"value", TT.Value}
+			};
+			partial rule VersionInfoResource @[
+				TT.VersionInfo
+				{var kp = SetKeywordParser(_versionInfoResource);}
+				( greedy(~('}' | TT.Begin))*
+				  OpenDefinition 
+				  VersionInfoBlock* 
+				  CloseDefinition
+				)
+				{SetKeywordParser(kp);}
+			];
+
+			rule VersionInfoBlock @[
+				TT.Block ~('{'|TT.Begin)+
+				OpenDefinition
+				(VersionInfoEntry | VersionInfoBlock)*
+				CloseDefinition
+			];
+
+			rule VersionInfoEntry @[
+				TT.Value VersionInfoValue+ (',' VersionInfoValue+)*
+			];
+
+			rule VersionInfoValue @[
+				~(','|TT.Value|'}'|TT.End|TT.Block)
+			];
+		}
+	}
+}

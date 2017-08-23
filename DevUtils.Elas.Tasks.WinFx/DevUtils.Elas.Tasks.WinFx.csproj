@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B72E34C5-DE51-423A-BF96-A8037F875A14}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevUtils.Elas.Tasks.WinFx</RootNamespace>
+    <AssemblyName>DevUtils.Elas.Tasks.WinFx</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>..\Debug\DevUtils.Elas.Tasks.WinFx.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>..\Release\DevUtils.Elas.Tasks.WinFx.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Elas.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Properties\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="BamlLocalizabilityByReflection.cs" />
+    <Compile Include="BamlLocalizeEngine.cs" />
+    <Compile Include="Common\ElasMSResxExportToIntermediateDocument.cs" />
+    <Compile Include="Common\ElasMSResxInportFromIntermediateDocument.cs" />
+    <Compile Include="DefaultAttributes.cs" />
+    <Compile Include="ElasBamlExtractResx.cs" />
+    <Compile Include="ElasBamlUpdateByResx.cs" />
+    <Compile Include="EmbeddedResources\ElasImportFromIntermediateDocumentEmbeddedResource.cs" />
+    <Compile Include="EmbeddedResources\ElasIncludeCulturedEmbeddedResource.cs" />
+    <Compile Include="EmbeddedResources\ElasExportToIntermediateDocumentEmbeddedResource.cs" />
+    <Compile Include="PRIResources\ElasAssignSourceLanguagePRIResource.cs" />
+    <Compile Include="PRIResources\ElasImportFromIntermediateDocumentPRIResource.cs" />
+    <Compile Include="XliffExportImport.cs" />
+    <Compile Include="Misc.cs" />
+    <Compile Include="PRIResources\ElasExportToIntermediateDocumentPRIResource.cs" />
+    <Compile Include="PRIResources\ElasIncludeCulturedPRIResource.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Elas.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevUtils.Elas.Tasks.Core\DevUtils.Elas.Tasks.Core.csproj">
+      <Project>{f52c4d6b-4894-42b1-baf5-2febc9f0ab7c}</Project>
+      <Name>DevUtils.Elas.Tasks.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns:elas="urn:devutils:names:tc:xliff:document:1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="Form1.resx" source-language="en-US" target-language="ru-RU" datatype="resx">
+		<header>
+			<tool tool-version="0.0.8.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=0.0.8.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" />
+		</header>
+		<body>
+			<group id="&gt;&gt;$this">
+				<trans-unit id="&gt;&gt;$this.Name" translate="no">
+					<source xml:space="preserve">Form1</source>
+					<target xml:space="preserve" state="translated">Form1</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;$this.Type" translate="no">
+					<source xml:space="preserve">System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</source>
+					<target xml:space="preserve" state="translated">System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</target>
+				</trans-unit>
+			</group>
+		</body>
+	</file>
+	<file original="Form1.resx" source-language="en-US" target-language="de-DE" datatype="resx">
+		<header>
+			<tool tool-version="0.0.8.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=0.0.8.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" />
+		</header>
+		<body>
+			<group id="&gt;&gt;$this">
+				<trans-unit id="&gt;&gt;$this.Name" translate="no">
+					<source xml:space="preserve">Form1</source>
+					<target xml:space="preserve" state="translated">Form1</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;$this.Type" translate="no">
+					<source xml:space="preserve">System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</source>
+					<target xml:space="preserve" state="translated">System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</target>
+				</trans-unit>
+			</group>
+		</body>
+	</file>
+</xliff>

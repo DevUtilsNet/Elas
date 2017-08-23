@@ -1,0 +1,134 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CRASH_HANDLER DIALOGEX 0, 0, 367, 370
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_FIXEDSYS | DS_CENTERMOUSE | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST | WS_EX_APPWINDOW
+CAPTION "RenderDoc Error Reporter"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    CONTROL         "Send Minidump",IDC_SENDDUMP,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | BS_LEFT | WS_TABSTOP,7,193,60,10
+    EDITTEXT        IDC_DUMPPATH,71,192,289,12,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Send Error Log",IDC_SENDLOG,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | BS_LEFT | WS_TABSTOP,7,210,60,10
+    EDITTEXT        IDC_LOGPATH,71,209,289,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_NAME,71,226,289,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EMAIL,71,243,289,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_REPRO,7,259,353,85,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN
+    PUSHBUTTON      "Send Report",IDC_SEND,123,349,50,14
+    PUSHBUTTON      "Close Without Sending",IDC_DONTSEND,187,349,78,14
+    LTEXT           "An error occurred!",IDC_WELCOMETEXT,7,7,353,180,SS_NOPREFIX | SS_SUNKEN
+    LTEXT           "Name (Optional):",IDC_NAMELABEL,7,228,61,8
+    RTEXT           "Email (Optional):",IDC_WELCOMETEXT,7,245,54,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_CRASH_HANDLER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 360
+        VERTGUIDE, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 363
+        HORZGUIDE, 187
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United Kingdom) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON                ICON                    "..\\renderdocui\\Resources\\icon.ico"
+#endif    // English (United Kingdom) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED

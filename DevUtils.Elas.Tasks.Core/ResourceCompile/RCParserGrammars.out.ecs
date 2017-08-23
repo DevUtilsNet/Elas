@@ -1,0 +1,1239 @@
+﻿using System;
+using System.Collections.Generic;
+using DevUtils.Elas.Tasks.Core.Loyc;
+using DevUtils.Elas.Tasks.Core.Loyc.Extensions;
+namespace DevUtils.Elas.Tasks.Core.ResourceCompile
+{
+	using TT = RCTokenType;
+	abstract partial class RCParser
+	{
+		static readonly Dictionary<string,TT> _stringTable = new Dictionary<string,TT> { 
+			{ "end", TT.End
+			}, { "begin", TT.Begin
+			}
+		};
+		static readonly Dictionary<string,TT> _skippedDefinedResource = new Dictionary<string,TT> { 
+			{ "end", TT.End
+			}, { "begin", TT.Begin
+			}
+		};
+		static readonly Dictionary<string,TT> _versionInfoResource = new Dictionary<string,TT> { 
+			{ "end", TT.End
+			}, { "begin", TT.Begin
+			}, { "block", TT.Block
+			}, { "value", TT.Value
+			}
+		};
+		void PPLine()
+		{
+			TT la0, la1;
+			Match((TT) TT.Preprocessor);
+			_lexer.IgnorePP = true;
+			// Line 19: (~(TT.Newline|EOF) | TT.ReverseSolidus TT.Newline)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.ReverseSolidus) {
+					la1 = LA(1);
+					if (la1 != TT.Newline)
+						Skip();
+					else {
+						Skip();
+						Skip();
+					}
+				} else if (!(la0 == EOF || la0 == TT.Newline || la0 == TT.ReverseSolidus))
+					Skip();
+				else
+					break;
+			}
+		}
+		partial void PPParse()
+		{
+			PPLine();
+		}
+		Token<TT> ResourceIdentifier()
+		{
+			var ret = Match((TT) TT.Keyword, (TT) TT.Number);
+			return ret;
+		}
+		Token<TT> PrimaryExpression()
+		{
+			TT la0;
+			Token<TT> ret;
+			// Line 32: (ResourceIdentifier | TT.LParen Expression TT.RParen)
+			la0 = LA0;
+			if (la0 == TT.Keyword || la0 == TT.Number)
+				ret = ResourceIdentifier();
+			else {
+				ret = Match((TT) TT.LParen);
+				Expression();
+				var t = Match((TT) TT.RParen);
+				ret.EndIndex = t.EndIndex;
+			}
+			return ret;
+		}
+		Token<TT> PostfixExpression()
+		{
+			TT la0;
+			Token<TT> ret;
+			ret = PrimaryExpression();
+			// Line 38: greedy((TT.Inc|TT.Dec))?
+			la0 = LA0;
+			if (la0 == TT.Dec || la0 == TT.Inc) {
+				var t = MatchAny();
+				ret.EndIndex = t.EndIndex;
+			}
+			return ret;
+		}
+		Token<TT> UnaryExpressionNotPlusMinus()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			// Line 44: ( TT.NotBits UnaryExpression | TT.Not UnaryExpression | PostfixExpression )
+			la0 = LA0;
+			if (la0 == TT.NotBits) {
+				ret = MatchAny();
+				l = UnaryExpression();
+			} else if (la0 == TT.Not) {
+				ret = MatchAny();
+				l = UnaryExpression();
+			} else {
+				ret = PostfixExpression();
+				l = ret;
+			}
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> UnaryExpression()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			// Line 50: ( TT.Inc UnaryExpression | TT.Dec UnaryExpression | TT.Minus UnaryExpression | TT.Plus UnaryExpression | UnaryExpressionNotPlusMinus )
+			la0 = LA0;
+			if (la0 == TT.Inc) {
+				ret = MatchAny();
+				l = UnaryExpression();
+			} else if (la0 == TT.Dec) {
+				ret = MatchAny();
+				l = UnaryExpression();
+			} else if (la0 == TT.Minus) {
+				ret = MatchAny();
+				l = UnaryExpression();
+			} else if (la0 == TT.Plus) {
+				ret = MatchAny();
+				l = UnaryExpression();
+			} else {
+				ret = UnaryExpressionNotPlusMinus();
+				l = ret;
+			}
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> MultiplicativeExpression()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			ret = UnaryExpression();
+			l = ret;
+			// Line 61: ((TT.Mul|TT.Div|TT.Mod) UnaryExpression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Div || la0 == TT.Mod || la0 == TT.Mul) {
+					Skip();
+					l = UnaryExpression();
+				} else
+					break;
+			}
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> AdditiveExpression()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			ret = MultiplicativeExpression();
+			l = ret;
+			// Line 67: greedy((TT.Minus|TT.Plus) MultiplicativeExpression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Minus || la0 == TT.Plus) {
+					switch (LA(1)) {
+					case TT.Dec:
+					case TT.Inc:
+					case TT.Keyword:
+					case TT.LParen:
+					case TT.Minus:
+					case TT.Not:
+					case TT.NotBits:
+					case TT.Number:
+					case TT.Plus:
+						{
+							Skip();
+							l = MultiplicativeExpression();
+						}
+						break;
+					default:
+						goto stop;
+					}
+				} else
+					goto stop;
+			}
+		 stop:;
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> ShiftExpression()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			ret = AdditiveExpression();
+			l = ret;
+			// Line 73: ((TT.ShiftLeft|TT.ShiftRight) AdditiveExpression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.ShiftLeft || la0 == TT.ShiftRight) {
+					Skip();
+					l = AdditiveExpression();
+				} else
+					break;
+			}
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> RelationalExpression()
+		{
+			Token<TT> ret, l;
+			ret = ShiftExpression();
+			l = ret;
+			// Line 79: ((TT.LessThan|TT.GreaterThan|TT.LessThanEqual|TT.GreaterThanEqual) ShiftExpression)*
+			 for (;;) {
+				switch (LA0) {
+				case TT.GreaterThan:
+				case TT.GreaterThanEqual:
+				case TT.LessThan:
+				case TT.LessThanEqual:
+					{
+						Skip();
+						l = ShiftExpression();
+					}
+					break;
+				default:
+					goto stop;
+				}
+			}
+		 stop:;
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> EqualityExpression()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			ret = RelationalExpression();
+			l = ret;
+			// Line 85: ((TT.Equal|TT.UnEqual) RelationalExpression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Equal || la0 == TT.UnEqual) {
+					Skip();
+					l = RelationalExpression();
+				} else
+					break;
+			}
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> AndExpression()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			ret = EqualityExpression();
+			l = ret;
+			// Line 91: (TT.AndBits EqualityExpression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.AndBits) {
+					Skip();
+					l = EqualityExpression();
+				} else
+					break;
+			}
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> ExclusiveOrExpression()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			ret = AndExpression();
+			l = ret;
+			// Line 97: (TT.XorBits AndExpression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.XorBits) {
+					Skip();
+					l = AndExpression();
+				} else
+					break;
+			}
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> InclusiveOrExpression()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			ret = ExclusiveOrExpression();
+			l = ret;
+			// Line 103: (TT.OrBits ExclusiveOrExpression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.OrBits) {
+					Skip();
+					l = ExclusiveOrExpression();
+				} else
+					break;
+			}
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> LogicalAndExpression()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			ret = InclusiveOrExpression();
+			l = ret;
+			// Line 109: (TT.And InclusiveOrExpression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.And) {
+					Skip();
+					l = InclusiveOrExpression();
+				} else
+					break;
+			}
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> LogicalOrExpression()
+		{
+			TT la0;
+			Token<TT> ret, l;
+			ret = LogicalAndExpression();
+			l = ret;
+			// Line 115: (TT.Or LogicalAndExpression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Or) {
+					Skip();
+					l = LogicalAndExpression();
+				} else
+					break;
+			}
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		Token<TT> ConditionalExpression()
+		{
+			var ret = LogicalOrExpression();
+			return ret;
+		}
+		Token<TT> Expression()
+		{
+			var ret = ConditionalExpression();
+			return ret;
+		}
+		Token<TT> ResourceIdentifierStatement()
+		{
+			Token<TT> ret = new Token<TT>(TT.EOF, -1, -1), l;
+			var sa = false;
+			// Line 131: (Expression | ResourceString)
+			 switch (LA0) {
+			case TT.Dec:
+			case TT.Inc:
+			case TT.Keyword:
+			case TT.LParen:
+			case TT.Minus:
+			case TT.Not:
+			case TT.NotBits:
+			case TT.Number:
+			case TT.Plus:
+				l = Expression();
+				break;
+			default:
+				l = ResourceString();
+				break;
+			}
+			if (!sa) {
+				ret = l;
+				sa = true;
+			}
+			// Line 131: greedy((Expression | ResourceString))*
+			 for (;;) {
+				switch (LA0) {
+				case TT.Dec:
+				case TT.Inc:
+				case TT.Keyword:
+				case TT.LParen:
+				case TT.Minus:
+				case TT.Not:
+				case TT.NotBits:
+				case TT.Number:
+				case TT.Plus:
+				case TT.RString:
+				case TT.String:
+					{
+						// Line 131: (Expression | ResourceString)
+						 switch (LA0) {
+						case TT.Dec:
+						case TT.Inc:
+						case TT.Keyword:
+						case TT.LParen:
+						case TT.Minus:
+						case TT.Not:
+						case TT.NotBits:
+						case TT.Number:
+						case TT.Plus:
+							l = Expression();
+							break;
+						default:
+							l = ResourceString();
+							break;
+						}
+						if (!sa) {
+							ret = l;
+							sa = true;
+						}
+					}
+					break;
+				default:
+					goto stop;
+				}
+			}
+		 stop:;
+			ret.EndIndex = l.EndIndex;
+			return ret;
+		}
+		void RawData()
+		{
+			TT la0;
+			OpenDefinition();
+			// Line 137: (~(TT.LBrace|TT.Begin|TT.RBrace|TT.End|EOF))*
+			 for (;;) {
+				la0 = LA0;
+				if (!(la0 == EOF || la0 == TT.Begin || la0 == TT.End || la0 == TT.LBrace || la0 == TT.RBrace))
+					Skip();
+				else
+					break;
+			}
+			CloseDefinition();
+		}
+		void FileName()
+		{
+			TT la0;
+			// Line 143: (TT.String | TT.RawKeyword)
+			la0 = LA0;
+			if (la0 == TT.String)
+				Skip();
+			else {
+				SetRawToken(true);
+				Match((TT) TT.RawKeyword);
+				SetRawToken(false);
+			}
+		}
+		void DataBlock()
+		{
+			TT la0;
+			// Line 147: (RawData | FileName)
+			la0 = LA0;
+			if (la0 == TT.Begin || la0 == TT.LBrace)
+				RawData();
+			else
+				FileName();
+		}
+		void OpenDefinition()
+		{
+			Match((TT) TT.Begin, (TT) TT.LBrace);
+		}
+		Token<TT> CloseDefinition()
+		{
+			var ret = Match((TT) TT.End, (TT) TT.RBrace);
+			return ret;
+		}
+		Token<TT> ResourceString()
+		{
+			var s = Match((TT) TT.RString, (TT) TT.String);
+			return s;
+		}
+		partial void LanguageEntry()
+		{
+			Match((TT) TT.Language);
+			var pl = ResourceIdentifier();
+			Match((TT) TT.Comma);
+			var sl = ResourceIdentifier();
+			OnLanguageEntry(pl, sl);
+		}
+		partial void StringTable()
+		{
+			TT la0;
+			var kp = SetKeywordParser(_stringTable);
+			// Line 176: (CommonResourceAttributes)?
+			 switch (LA0) {
+			case TT.Discardable:
+			case TT.Fixed:
+			case TT.Impure:
+			case TT.LoadOnCall:
+			case TT.Moveable:
+			case TT.NonShared:
+			case TT.Preload:
+			case TT.Pure:
+			case TT.Shared:
+				CommonResourceAttributes();
+				break;
+			}
+			OpenDefinition();
+			// Line 178: (StringTableEntry)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Keyword || la0 == TT.Number)
+					StringTableEntry();
+				else
+					break;
+			}
+			var ret = CloseDefinition();
+			SetKeywordParser(kp);
+			_ret = ret;
+		}
+		void StringTableEntry()
+		{
+			TT la0;
+			var id = ResourceIdentifier();
+			// Line 185: (TT.Comma)?
+			la0 = LA0;
+			if (la0 == TT.Comma)
+				Skip();
+			var s = ResourceString();
+			OnStringTableEntry(id, s);
+		}
+		partial void SkippedDefinedResource()
+		{
+			Match((TT) TT.RawKeyword);
+			SetRawToken(false);
+			var kp = SetKeywordParser(_skippedDefinedResource);
+			// Line 194: (CommonResourceAttributes)?
+			 switch (LA0) {
+			case TT.Discardable:
+			case TT.Fixed:
+			case TT.Impure:
+			case TT.LoadOnCall:
+			case TT.Moveable:
+			case TT.NonShared:
+			case TT.Preload:
+			case TT.Pure:
+			case TT.Shared:
+				CommonResourceAttributes();
+				break;
+			}
+			DataBlock();
+			SetKeywordParser(kp);
+			SetRawToken(true);
+		}
+		void LoadAttribute()
+		{
+			Match((TT) TT.LoadOnCall, (TT) TT.Preload);
+		}
+		static readonly HashSet<TT> MemoryAttribute_set0 = NewSet((TT) TT.Discardable, (TT) TT.Fixed, (TT) TT.Impure, (TT) TT.Moveable, (TT) TT.NonShared, (TT) TT.Pure, (TT) TT.Shared);
+		void MemoryAttribute()
+		{
+			Match(MemoryAttribute_set0);
+		}
+		void CommonResourceAttributes()
+		{
+			TT la0;
+			// Line 206: (LoadAttribute | MemoryAttribute)
+			la0 = LA0;
+			if (la0 == TT.LoadOnCall || la0 == TT.Preload)
+				LoadAttribute();
+			else
+				MemoryAttribute();
+		}
+		partial void ToolbarResource()
+		{
+			Match((TT) TT.Toolbar);
+			var kp = SetKeywordParser(_resourceEntry);
+			// Line 210: (CommonResourceAttributes)?
+			 switch (LA0) {
+			case TT.Discardable:
+			case TT.Fixed:
+			case TT.Impure:
+			case TT.LoadOnCall:
+			case TT.Moveable:
+			case TT.NonShared:
+			case TT.Preload:
+			case TT.Pure:
+			case TT.Shared:
+				CommonResourceAttributes();
+				break;
+			}
+			Match((TT) TT.Number);
+			Match((TT) TT.Comma);
+			Match((TT) TT.Number);
+			RawData();
+			SetKeywordParser(kp);
+		}
+		void ResourceCharacteristics()
+		{
+			Match((TT) TT.Characteristics);
+			Expression();
+		}
+		void ResourceVersion()
+		{
+			Match((TT) TT.Version);
+			Expression();
+		}
+		void DialogCommonResourceInfo()
+		{
+			TT la0;
+			// Line 222: ( LanguageEntry | ResourceVersion | TT.Style Expression | TT.ExStyle Expression | ResourceCharacteristics | TT.Caption ResourceString | TT.Menu ResourceIdentifier | TT.Class ResourceIdentifier | TT.Font TT.Number TT.Comma TT.String (TT.Comma TT.Number TT.Comma TT.Number TT.Comma ResourceIdentifier)? )
+			 switch (LA0) {
+			case TT.Language:
+				LanguageEntry();
+				break;
+			case TT.Version:
+				ResourceVersion();
+				break;
+			case TT.Style:
+				{
+					Skip();
+					Expression();
+				}
+				break;
+			case TT.ExStyle:
+				{
+					Skip();
+					Expression();
+				}
+				break;
+			case TT.Characteristics:
+				ResourceCharacteristics();
+				break;
+			case TT.Caption:
+				{
+					Skip();
+					ResourceString();
+				}
+				break;
+			case TT.Menu:
+				{
+					Skip();
+					ResourceIdentifier();
+				}
+				break;
+			case TT.Class:
+				{
+					Skip();
+					ResourceIdentifier();
+				}
+				break;
+			default:
+				{
+					Match((TT) TT.Font);
+					Match((TT) TT.Number);
+					Match((TT) TT.Comma);
+					Match((TT) TT.String);
+					// Line 230: (TT.Comma TT.Number TT.Comma TT.Number TT.Comma ResourceIdentifier)?
+					la0 = LA0;
+					if (la0 == TT.Comma) {
+						Skip();
+						Match((TT) TT.Number);
+						Match((TT) TT.Comma);
+						Match((TT) TT.Number);
+						Match((TT) TT.Comma);
+						ResourceIdentifier();
+					}
+				}
+				break;
+			}
+		}
+		void DialogExGenericControlTrailing()
+		{
+		}
+		void DialogGenericControl()
+		{
+			TT la0;
+			var ct = Match((TT) TT.Control);
+			var c = ResourceIdentifierStatement();
+			Match((TT) TT.Comma);
+			var id = Expression();
+			Match((TT) TT.Comma);
+			Match((TT) TT.String);
+			Match((TT) TT.Comma);
+			Expression();
+			Match((TT) TT.Comma);
+			Expression();
+			Match((TT) TT.Comma);
+			Expression();
+			Match((TT) TT.Comma);
+			Expression();
+			Match((TT) TT.Comma);
+			Expression();
+			// Line 241: (TT.Comma Expression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Comma) {
+					Skip();
+					Expression();
+				} else
+					break;
+			}
+			// Line 242: (TT.LBrace Expression (TT.Comma Expression)* TT.RBrace)?
+			la0 = LA0;
+			if (la0 == TT.LBrace) {
+				Skip();
+				Expression();
+				// Line 242: (TT.Comma Expression)*
+				 for (;;) {
+					la0 = LA0;
+					if (la0 == TT.Comma) {
+						Skip();
+						Expression();
+					} else
+						break;
+				}
+				Match((TT) TT.RBrace);
+			}
+			OnDialogControl(ct, c, id);
+		}
+		void DialogStaticControl()
+		{
+			var ct = Match((TT) TT.CText, (TT) TT.LText, (TT) TT.RText);
+			var c = ResourceIdentifierStatement();
+			Match((TT) TT.Comma);
+			var id = Expression();
+			OnDialogControl(ct, c, id);
+		}
+		static readonly HashSet<TT> DialogButtonControl_set0 = NewSet((TT) TT.Auto3State, (TT) TT.AutoCheckBox, (TT) TT.AutoRadioButton, (TT) TT.CheckBox, (TT) TT.DefPushButton, (TT) TT.GroupBox, (TT) TT.PushBox, (TT) TT.PushButton, (TT) TT.RadioButton, (TT) TT.State3, (TT) TT.UserButton);
+		void DialogButtonControl()
+		{
+			var ct = Match(DialogButtonControl_set0);
+			var c = ResourceIdentifierStatement();
+			Match((TT) TT.Comma);
+			var id = Expression();
+			OnDialogControl(ct, c, id);
+		}
+		void DialogEditControl()
+		{
+			Match((TT) TT.BEdit, (TT) TT.EditText, (TT) TT.HEdit, (TT) TT.IEdit);
+			Expression();
+		}
+		void DialogCommonControl()
+		{
+			Match((TT) TT.ComboBox, (TT) TT.ListBox);
+			Expression();
+		}
+		void DialogIconControl()
+		{
+			Match((TT) TT.Icon);
+			ResourceIdentifierStatement();
+			Match((TT) TT.Comma);
+			Expression();
+		}
+		void DialogScrollBarControl()
+		{
+			Match((TT) TT.ScrollBar);
+			Expression();
+		}
+		void DialogConcreteControlDefinition()
+		{
+			TT la0;
+			// Line 294: ( DialogStaticControl | DialogButtonControl | DialogEditControl | DialogCommonControl | DialogIconControl | DialogScrollBarControl )
+			 switch (LA0) {
+			case TT.CText:
+			case TT.LText:
+			case TT.RText:
+				DialogStaticControl();
+				break;
+			case TT.Auto3State:
+			case TT.AutoCheckBox:
+			case TT.AutoRadioButton:
+			case TT.CheckBox:
+			case TT.DefPushButton:
+			case TT.GroupBox:
+			case TT.PushBox:
+			case TT.PushButton:
+			case TT.RadioButton:
+			case TT.State3:
+			case TT.UserButton:
+				DialogButtonControl();
+				break;
+			case TT.BEdit:
+			case TT.EditText:
+			case TT.HEdit:
+			case TT.IEdit:
+				DialogEditControl();
+				break;
+			case TT.ComboBox:
+			case TT.ListBox:
+				DialogCommonControl();
+				break;
+			case TT.Icon:
+				DialogIconControl();
+				break;
+			default:
+				DialogScrollBarControl();
+				break;
+			}
+			Match((TT) TT.Comma);
+			Expression();
+			Match((TT) TT.Comma);
+			Expression();
+			Match((TT) TT.Comma);
+			Expression();
+			Match((TT) TT.Comma);
+			Expression();
+			// Line 302: (TT.Comma Expression)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Comma) {
+					Skip();
+					Expression();
+				} else
+					break;
+			}
+			// Line 303: (TT.LBrace Expression (TT.Comma Expression)* TT.RBrace)?
+			la0 = LA0;
+			if (la0 == TT.LBrace) {
+				Skip();
+				Expression();
+				// Line 303: (TT.Comma Expression)*
+				 for (;;) {
+					la0 = LA0;
+					if (la0 == TT.Comma) {
+						Skip();
+						Expression();
+					} else
+						break;
+				}
+				Match((TT) TT.RBrace);
+			}
+		}
+		partial void DialogResource()
+		{
+			TT la0;
+			Match((TT) TT.Dialog);
+			var kp = SetKeywordParser(_resourceEntry);
+			// Line 310: (CommonResourceAttributes)?
+			 switch (LA0) {
+			case TT.Discardable:
+			case TT.Fixed:
+			case TT.Impure:
+			case TT.LoadOnCall:
+			case TT.Moveable:
+			case TT.NonShared:
+			case TT.Preload:
+			case TT.Pure:
+			case TT.Shared:
+				CommonResourceAttributes();
+				break;
+			}
+			Expression();
+			Match((TT) TT.Comma);
+			Expression();
+			Match((TT) TT.Comma);
+			Expression();
+			Match((TT) TT.Comma);
+			Expression();
+			// Line 314: (TT.Comma Expression)?
+			la0 = LA0;
+			if (la0 == TT.Comma) {
+				Skip();
+				Expression();
+			}
+			// Line 315: (DialogCommonResourceInfo)*
+			 for (;;) {
+				switch (LA0) {
+				case TT.Caption:
+				case TT.Characteristics:
+				case TT.Class:
+				case TT.ExStyle:
+				case TT.Font:
+				case TT.Language:
+				case TT.Menu:
+				case TT.Style:
+				case TT.Version:
+					DialogCommonResourceInfo();
+					break;
+				default:
+					goto stop;
+				}
+			}
+		 stop:;
+			OpenDefinition();
+			// Line 316: (DialogGenericControl | DialogConcreteControlDefinition)*
+			 for (;;) {
+				switch (LA0) {
+				case TT.Control:
+					DialogGenericControl();
+					break;
+				case TT.Auto3State:
+				case TT.AutoCheckBox:
+				case TT.AutoRadioButton:
+				case TT.BEdit:
+				case TT.CheckBox:
+				case TT.ComboBox:
+				case TT.CText:
+				case TT.DefPushButton:
+				case TT.EditText:
+				case TT.GroupBox:
+				case TT.HEdit:
+				case TT.Icon:
+				case TT.IEdit:
+				case TT.ListBox:
+				case TT.LText:
+				case TT.PushBox:
+				case TT.PushButton:
+				case TT.RadioButton:
+				case TT.RText:
+				case TT.ScrollBar:
+				case TT.State3:
+				case TT.UserButton:
+					DialogConcreteControlDefinition();
+					break;
+				default:
+					goto stop2;
+				}
+			}
+		 stop2:;
+			var ret = CloseDefinition();
+			SetKeywordParser(kp);
+			_ret = ret;
+		}
+		partial void DesignInfo()
+		{
+			TT la0;
+			Match((TT) TT.DesignInfo);
+			var kp = SetKeywordParser(_resourceEntry);
+			// Line 324: (CommonResourceAttributes)?
+			 switch (LA0) {
+			case TT.Discardable:
+			case TT.Fixed:
+			case TT.Impure:
+			case TT.LoadOnCall:
+			case TT.Moveable:
+			case TT.NonShared:
+			case TT.Preload:
+			case TT.Pure:
+			case TT.Shared:
+				CommonResourceAttributes();
+				break;
+			}
+			// Line 325: (OpenDefinition (DesignInfoControlBlock)* CloseDefinition | FileName)
+			la0 = LA0;
+			if (la0 == TT.Begin || la0 == TT.LBrace) {
+				OpenDefinition();
+				// Line 326: (DesignInfoControlBlock)*
+				 for (;;) {
+					la0 = LA0;
+					if (!(la0 == EOF || la0 == TT.End || la0 == TT.RBrace))
+						DesignInfoControlBlock();
+					else
+						break;
+				}
+				CloseDefinition();
+			} else
+				FileName();
+			SetKeywordParser(kp);
+		}
+		void DesignInfoControlBlock()
+		{
+			TT la0;
+			// Line 333: (RawData | ~(TT.LBrace|TT.Begin|TT.RBrace|TT.End|EOF))
+			la0 = LA0;
+			if (la0 == TT.Begin || la0 == TT.LBrace)
+				RawData();
+			else
+				MatchExcept((TT) TT.Begin, (TT) TT.End, (TT) TT.LBrace, (TT) TT.RBrace);
+		}
+		void CommonResourceInfo()
+		{
+			TT la0;
+			// Line 337: ( ResourceCharacteristics | LanguageEntry | ResourceVersion )
+			la0 = LA0;
+			if (la0 == TT.Characteristics)
+				ResourceCharacteristics();
+			else if (la0 == TT.Language)
+				LanguageEntry();
+			else
+				ResourceVersion();
+		}
+		void MenuItemOption()
+		{
+			Match((TT) TT.Comma);
+			Match((TT) TT.Keyword);
+		}
+		void MenuItem()
+		{
+			TT la0;
+			Match((TT) TT.Keyword);
+			// Line 348: (TT.Separator | ResourceString TT.Comma ResourceIdentifier (MenuItemOption)*)
+			la0 = LA0;
+			if (la0 == TT.Separator)
+				Skip();
+			else {
+				var r = ResourceString();
+				Match((TT) TT.Comma);
+				var id = ResourceIdentifier();
+				OnMenuItem(id, r);
+				// Line 348: (MenuItemOption)*
+				 for (;;) {
+					la0 = LA0;
+					if (la0 == TT.Comma)
+						MenuItemOption();
+					else
+						break;
+				}
+			}
+		}
+		partial void PopupEntryBody()
+		{
+			TT la0;
+			OpenDefinition();
+			// Line 352: (MenuEntryItem)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Keyword || la0 == TT.Popup)
+					MenuEntryItem();
+				else
+					break;
+			}
+			CloseDefinition();
+		}
+		void PopupEntry()
+		{
+			TT la0;
+			Match((TT) TT.Popup);
+			var r = ResourceString();
+			// Line 360: (MenuItemOption)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Comma)
+					MenuItemOption();
+				else
+					break;
+			}
+			OnPopupEntryBody(r);
+		}
+		void MenuEntryItem()
+		{
+			TT la0;
+			// Line 364: (MenuItem | PopupEntry)
+			la0 = LA0;
+			if (la0 == TT.Keyword)
+				MenuItem();
+			else
+				PopupEntry();
+		}
+		partial void MenuResource()
+		{
+			TT la0;
+			Match((TT) TT.Menu);
+			var kp = SetKeywordParser(_resourceEntry);
+			// Line 370: (CommonResourceAttributes)?
+			 switch (LA0) {
+			case TT.Discardable:
+			case TT.Fixed:
+			case TT.Impure:
+			case TT.LoadOnCall:
+			case TT.Moveable:
+			case TT.NonShared:
+			case TT.Preload:
+			case TT.Pure:
+			case TT.Shared:
+				CommonResourceAttributes();
+				break;
+			}
+			// Line 371: (CommonResourceInfo)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Characteristics || la0 == TT.Language || la0 == TT.Version)
+					CommonResourceInfo();
+				else
+					break;
+			}
+			OpenDefinition();
+			// Line 373: (MenuEntryItem)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Keyword || la0 == TT.Popup)
+					MenuEntryItem();
+				else
+					break;
+			}
+			var ret = CloseDefinition();
+			SetKeywordParser(kp);
+			_ret = ret;
+		}
+		void AcceleratorEntry()
+		{
+			TT la0;
+			ResourceIdentifierStatement();
+			Match((TT) TT.Comma);
+			Expression();
+			Match((TT) TT.Comma);
+			Match((TT) TT.Control, (TT) TT.Keyword);
+			// Line 380: (TT.Comma (TT.Control|TT.Keyword))*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Comma) {
+					Skip();
+					Match((TT) TT.Control, (TT) TT.Keyword);
+				} else
+					break;
+			}
+		}
+		partial void AcceleratorResource()
+		{
+			TT la0;
+			Match((TT) TT.Accelerators);
+			var kp = SetKeywordParser(_resourceEntry);
+			// Line 386: (CommonResourceAttributes)?
+			 switch (LA0) {
+			case TT.Discardable:
+			case TT.Fixed:
+			case TT.Impure:
+			case TT.LoadOnCall:
+			case TT.Moveable:
+			case TT.NonShared:
+			case TT.Preload:
+			case TT.Pure:
+			case TT.Shared:
+				CommonResourceAttributes();
+				break;
+			}
+			// Line 387: (CommonResourceInfo)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Characteristics || la0 == TT.Language || la0 == TT.Version)
+					CommonResourceInfo();
+				else
+					break;
+			}
+			OpenDefinition();
+			// Line 389: (AcceleratorEntry)*
+			 for (;;) {
+				switch (LA0) {
+				case TT.Dec:
+				case TT.Inc:
+				case TT.Keyword:
+				case TT.LParen:
+				case TT.Minus:
+				case TT.Not:
+				case TT.NotBits:
+				case TT.Number:
+				case TT.Plus:
+				case TT.RString:
+				case TT.String:
+					AcceleratorEntry();
+					break;
+				default:
+					goto stop;
+				}
+			}
+		 stop:;
+			CloseDefinition();
+			SetKeywordParser(kp);
+		}
+		partial void VersionInfoResource()
+		{
+			TT la0, la1;
+			Match((TT) TT.VersionInfo);
+			var kp = SetKeywordParser(_versionInfoResource);
+			// Line 404: greedy(~(TT.Begin|TT.RBrace|EOF))*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.LBrace) {
+					la1 = LA(1);
+					if (!(la1 == EOF || la1 == TT.RBrace))
+						Skip();
+					else
+						break;
+				} else if (!(la0 == EOF || la0 == TT.Begin || la0 == TT.LBrace || la0 == TT.RBrace))
+					Skip();
+				else
+					break;
+			}
+			OpenDefinition();
+			// Line 406: (VersionInfoBlock)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Block)
+					VersionInfoBlock();
+				else
+					break;
+			}
+			CloseDefinition();
+			SetKeywordParser(kp);
+		}
+		void VersionInfoBlock()
+		{
+			TT la0;
+			Match((TT) TT.Block);
+			MatchExcept((TT) TT.Begin, (TT) TT.LBrace);
+			// Line 413: (~(TT.LBrace|TT.Begin|EOF))*
+			 for (;;) {
+				la0 = LA0;
+				if (!(la0 == EOF || la0 == TT.Begin || la0 == TT.LBrace))
+					Skip();
+				else
+					break;
+			}
+			OpenDefinition();
+			// Line 415: (VersionInfoEntry | VersionInfoBlock)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Value)
+					VersionInfoEntry();
+				else if (la0 == TT.Block)
+					VersionInfoBlock();
+				else
+					break;
+			}
+			CloseDefinition();
+		}
+		static readonly HashSet<TT> VersionInfoEntry_set0 = NewSet((TT) EOF, (TT) TT.Block, (TT) TT.Comma, (TT) TT.End, (TT) TT.RBrace, (TT) TT.Value);
+		void VersionInfoEntry()
+		{
+			TT la0;
+			Match((TT) TT.Value);
+			VersionInfoValue();
+			// Line 420: (VersionInfoValue)*
+			 for (;;) {
+				la0 = LA0;
+				if (!VersionInfoEntry_set0.Contains((TT) la0))
+					VersionInfoValue();
+				else
+					break;
+			}
+			// Line 420: (TT.Comma VersionInfoValue (VersionInfoValue)*)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == TT.Comma) {
+					Skip();
+					VersionInfoValue();
+					// Line 420: (VersionInfoValue)*
+					 for (;;) {
+						la0 = LA0;
+						if (!VersionInfoEntry_set0.Contains((TT) la0))
+							VersionInfoValue();
+						else
+							break;
+					}
+				} else
+					break;
+			}
+		}
+		void VersionInfoValue()
+		{
+			MatchExcept(VersionInfoEntry_set0);
+		}
+	}
+}

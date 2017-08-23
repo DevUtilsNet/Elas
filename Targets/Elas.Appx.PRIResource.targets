@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<UsingTask TaskName="ElasGetCulturedPRIResource" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	<UsingTask TaskName="ElasAssignSourceLanguagePRIResource" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	<UsingTask TaskName="ElasExportToIntermediateDocumentPRIResource" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	<UsingTask TaskName="ElasImportFromIntermediateDocumentPRIResource" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	
+
+	<Target Name="ElasAssignIntermediateDocumentPathsPRIResource"
+			BeforeTargets="BeforeGenerateProjectPriFile">
+		<ItemGroup>
+			<_Temporary1 Remove="@(_Temporary1)" />
+			<_Temporary2 Remove="@(_Temporary2)" />
+			<_Temporary3 Remove="@(_Temporary3)" />
+		</ItemGroup>
+
+		<AssignTargetPath Files="@(PRIResource)" RootFolder="$(MSBuildProjectDirectory)">
+			<Output TaskParameter="AssignedFiles" ItemName="_Temporary1" />
+		</AssignTargetPath>
+
+		<ElasAssignIntermediateDocumentPath Files="@(_Temporary1)"
+											RootFolder="$(MSBuildProjectDirectory)"
+											Condition="'%(PRIResource.Extension)'=='.resw'">
+			<Output TaskParameter="AssignedFiles" ItemName="_Temporary2" />
+		</ElasAssignIntermediateDocumentPath>
+
+		<ElasAssignSourceLanguagePRIResource Files="@(_Temporary2)" 
+											 DefaultLanguage="$(DefaultLanguage)">
+			<Output TaskParameter="AssignedFiles" ItemName="_Temporary3" />
+			<Output TaskParameter="AssignedFiles" ItemName="ElasAssignedPRIResource" />
+		</ElasAssignSourceLanguagePRIResource>
+
+		<ItemGroup>
+			<ElasIntermediateDocumentPathPRIResource Include="%(ElasAssignedPRIResource.ElasIntermediateDocumentPath)"/>
+		</ItemGroup>
+
+		<ItemGroup>
+			<!--Replace items in PRIResource with the items emitted by the ElasAssignIntermediateDocumentPath task that have the IntermediateDocumentPath metadata-->
+			<PRIResource Remove="@(ElasAssignedPRIResource)" />
+			<PRIResource Include="@(ElasAssignedPRIResource)" />
+			<_Temporary1 Remove="@(_Temporary1)" />
+			<_Temporary2 Remove="@(_Temporary2)" />
+			<_Temporary3 Remove="@(_Temporary3)" />
+		</ItemGroup>
+
+	</Target>
+
+	<Target Name="ElasIncludeCulturedPRIResource"
+					BeforeTargets="BeforeGenerateProjectPriFile"
+					DependsOnTargets="ElasAssignIntermediateDocumentPathsPRIResource">
+
+		<ElasGetCulturedPRIResource Files="@(PRIResource)"
+									TargetCultures="@(ElasTargetCultures)"
+									IntermediateOutputPath ="$(IntermediateOutputPath)"
+									Condition="'%(PRIResource.ElasIntermediateDocumentPath)'!=''">
+			<Output TaskParameter="OutputFiles" ItemName="FileWrites" />
+			<Output TaskParameter="OutputFiles" ItemName="PRIResource" />
+			<Output TaskParameter="OutputFiles" ItemName="ElasPRIResource" />
+		</ElasGetCulturedPRIResource>
+
+	</Target>
+
+	<Target Name="ElasExportToIntermediateDocumentPRIResource"
+					AfterTargets="ElasIncludeCulturedPRIResource"
+					Outputs="@(ElasIntermediateDocumentPathPRIResource)"
+					Inputs="$(ElasConfigurationPath);@(ElasAssignedPRIResource)"
+					DependsOnTargets="ElasAssignIntermediateDocumentPathsPRIResource">
+
+		<ElasExportToIntermediateDocumentPRIResource Files="@(ElasAssignedPRIResource)"
+													 TargetCultures="@(ElasTargetCultures)"
+													 ConfigurationPath="$(ElasConfigurationPath)" />
+
+	</Target>
+
+	<Target Name="ElasPretranslatePRIResource"
+					Outputs="@(ElasPRIResource)"
+					Inputs="@(ElasIntermediateDocumentPathPRIResource)"
+					AfterTargets="ElasExportToIntermediateDocumentPRIResource">
+
+		<ElasPretranslate ConfigurationPath="$(ElasConfigurationPath)"
+						  Files="@(ElasIntermediateDocumentPathPRIResource)"/>
+
+	</Target>
+
+	<Target Name="ElasValidateIntermediateDocumentPRIResource"
+			BeforeTargets="ElasImportFromIntermediateDocumentPRIResource"
+			AfterTargets="ElasExportToIntermediateDocumentPRIResource">
+
+		<ElasValidateIntermediateDocument TargetCultures="@(ElasTargetCultures)" 
+										  TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+										  Files="@(ElasIntermediateDocumentPathPRIResource)" />
+
+	</Target>
+
+	<Target Name="ElasImportFromIntermediateDocumentPRIResource"
+			Outputs="@(ElasPRIResource)"
+			BeforeTargets="_GenerateProjectPriFileCore"
+			Inputs="@(ElasIntermediateDocumentPathPRIResource)"
+			DependsOnTargets="ElasExportToIntermediateDocumentPRIResource">
+
+		<ElasImportFromIntermediateDocumentPRIResource Files="@(ElasPRIResource)"/>
+	</Target>
+
+</Project>

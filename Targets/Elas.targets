@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+
+		<ElasBinPath Condition="'$(ElasBinPath)'==''">$(MSBuildThisFileDirectory)..\</ElasBinPath>
+		<ElasTasksCoreAssembly Condition="'$(ElasTasksCoreAssembly)'==''">$(ElasBinPath)DevUtils.Elas.Tasks.Core.dll</ElasTasksCoreAssembly>
+		<ElasPretranslateAssembly Condition="'$(ElasPretranslateAssembly)'==''">$(ElasTasksCoreAssembly)</ElasPretranslateAssembly>
+		<ElasConfigurationPath Condition="'$(ElasConfigurationPath)'==''">$(MSBuildThisFileDirectory)..\..\..\..\.Elas\ElasConfiguration.props</ElasConfigurationPath>
+
+	</PropertyGroup>
+
+	<Import Project="$(ElasConfigurationPath)" />
+
+	<UsingTask TaskName="ElasPretranslate" AssemblyFile="$(ElasPretranslateAssembly)" />
+
+	<UsingTask TaskName="ElasClearReadOnly" AssemblyFile="$(ElasTasksCoreAssembly)" />
+	<UsingTask TaskName="ElasAddFilesToProject" AssemblyFile="$(ElasTasksCoreAssembly)" />
+	<UsingTask TaskName="ElasValidateIntermediateDocument" AssemblyFile="$(ElasTasksCoreAssembly)" />
+	<UsingTask TaskName="ElasAssignIntermediateDocumentPath" AssemblyFile="$(ElasTasksCoreAssembly)" />
+
+</Project>

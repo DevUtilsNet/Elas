@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Targets", "Targets", "{A09E1DDB-66FD-4923-A1A5-D47DF6A09E3C}"
+	ProjectSection(SolutionItems) = preProject
+		Targets\Elas.Appx.PRIResource.targets = Targets\Elas.Appx.PRIResource.targets
+		Targets\Elas.Appx.targets = Targets\Elas.Appx.targets
+		Targets\Elas.Common.targets = Targets\Elas.Common.targets
+		Targets\Elas.Pretranslate.MicrosoftTranslation.targets = Targets\Elas.Pretranslate.MicrosoftTranslation.targets
+		Targets\Elas.Providers.crossAPI.targets = Targets\Elas.Providers.crossAPI.targets
+		Targets\Elas.Silverlight.targets = Targets\Elas.Silverlight.targets
+		Targets\Elas.targets = Targets\Elas.targets
+		Targets\Elas.WinFx.Baml.targets = Targets\Elas.WinFx.Baml.targets
+		Targets\Elas.WinFx.EmbeddedResource.targets = Targets\Elas.WinFx.EmbeddedResource.targets
+		Targets\Elas.WinFx.RDLC.targets = Targets\Elas.WinFx.RDLC.targets
+		Targets\Elas.WinFx.Resx_.targets = Targets\Elas.WinFx.Resx_.targets
+		Targets\Elas.WinFx.targets = Targets\Elas.WinFx.targets
+		Targets\Elas.Wix.targets = Targets\Elas.Wix.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nupkg", "Nupkg", "{57FFB9B6-3DDB-4E65-908A-7651547F2C4B}"
+	ProjectSection(SolutionItems) = preProject
+		Nupkg\DevUtils.Elas.Core.nuspec = Nupkg\DevUtils.Elas.Core.nuspec
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevUtils.Elas.Tasks.Core", "DevUtils.Elas.Tasks.Core\DevUtils.Elas.Tasks.Core.csproj", "{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevUtils.Elas.Pretranslate.MicrosoftTranslation", "DevUtils.Elas.Pretranslate.MicrosoftTranslation\DevUtils.Elas.Pretranslate.MicrosoftTranslation.csproj", "{66E560B0-1BA2-4819-A385-1B2922DF46F3}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://devutils.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DevUtils.Elas.Tasks.Core\\DevUtils.Elas.Tasks.Core.csproj
+		SccProjectName1 = DevUtils.Elas.Tasks.Core
+		SccLocalPath1 = DevUtils.Elas.Tasks.Core
+		SccProjectUniqueName2 = DevUtils.Elas.Pretranslate.MicrosoftTranslation\\DevUtils.Elas.Pretranslate.MicrosoftTranslation.csproj
+		SccProjectName2 = DevUtils.Elas.Pretranslate.MicrosoftTranslation
+		SccLocalPath2 = DevUtils.Elas.Pretranslate.MicrosoftTranslation
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}.Release|x64.ActiveCfg = Release|Any CPU
+		{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}.Release|x86.ActiveCfg = Release|Any CPU
+		{66E560B0-1BA2-4819-A385-1B2922DF46F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E560B0-1BA2-4819-A385-1B2922DF46F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E560B0-1BA2-4819-A385-1B2922DF46F3}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{66E560B0-1BA2-4819-A385-1B2922DF46F3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{66E560B0-1BA2-4819-A385-1B2922DF46F3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{66E560B0-1BA2-4819-A385-1B2922DF46F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E560B0-1BA2-4819-A385-1B2922DF46F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66E560B0-1BA2-4819-A385-1B2922DF46F3}.Release|ARM.ActiveCfg = Release|Any CPU
+		{66E560B0-1BA2-4819-A385-1B2922DF46F3}.Release|x64.ActiveCfg = Release|Any CPU
+		{66E560B0-1BA2-4819-A385-1B2922DF46F3}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="ElasValidatePretranslator">
+
+	<PropertyGroup>
+		<ElasPretranslateMicrosoftTranslationAssembly Condition="'$(ElasPretranslateMicrosoftTranslationAssembly)' == ''">$(MSBuildThisFileDirectory)DevUtils.Elas.Pretranslate.MicrosoftTranslation.dll</ElasPretranslateMicrosoftTranslationAssembly>
+		<ElasPretranslateAssembly Condition="'$(ElasPretranslateAssembly)' == '' OR '$(ElasPretranslateAssembly)' == '$(ElasTasksCoreAssembly)'">$(ElasPretranslateMicrosoftTranslationAssembly)</ElasPretranslateAssembly>
+	</PropertyGroup>
+
+	<Target Name="ElasValidatePretranslator">
+		<Error Condition="'$(ElasPretranslateAssembly)' != '$(ElasPretranslateMicrosoftTranslationAssembly)'" Text="Conflicts Pre Translators '$(ElasPretranslateAssembly)' and '$(ElasPretranslateMicrosoftTranslationAssembly)'. You can only use one pre translator." />
+	</Target>
+
+</Project>

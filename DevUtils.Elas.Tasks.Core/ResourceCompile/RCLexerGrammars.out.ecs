@@ -1,0 +1,659 @@
+﻿using System.Collections.Generic;
+using DevUtils.Elas.Tasks.Core.Loyc;
+namespace DevUtils.Elas.Tasks.Core.ResourceCompile
+{
+	using TT = RCTokenType;
+	sealed partial class RCLexer
+	{
+		void Space()
+		{
+			Skip();
+		}
+		void Spaces()
+		{
+			int la0;
+			BeginToken();
+			Space();
+			// Line 21: (Space)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == '\t' || la0 == '\x0B' || la0 == ' ')
+					Space();
+				else
+					break;
+			}
+			EndToken(TT.SpacesOrComments);
+		}
+		void SLComment()
+		{
+			int la0;
+			BeginToken();
+			Match('/');
+			Match('/');
+			// Line 25: ([^\$\n\r])*
+			 for (;;) {
+				la0 = LA0;
+				if (!(la0 == -1 || la0 == '\n' || la0 == '\r'))
+					Skip();
+				else
+					break;
+			}
+			EndToken(TT.SpacesOrComments);
+		}
+		void MLComment()
+		{
+			int la1;
+			BeginToken();
+			Match('/');
+			Skip();
+			// Line 30: nongreedy( MLComment / Newline / [^\$] )*
+			 for (;;) {
+				switch (LA0) {
+				case '*':
+					{
+						la1 = LA(1);
+						if (la1 == -1 || la1 == '/')
+							goto stop;
+						else
+							Skip();
+					}
+					break;
+				case -1:
+					goto stop;
+				case '/':
+					{
+						la1 = LA(1);
+						if (la1 == '*')
+							MLComment();
+						else
+							Skip();
+					}
+					break;
+				case '\n':
+				case '\r':
+					Newline();
+					break;
+				default:
+					Skip();
+					break;
+				}
+			}
+		 stop:;
+			Match('*');
+			Match('/');
+			EndToken(TT.SpacesOrComments);
+		}
+		void Comment()
+		{
+			int la1;
+			// Line 34: (MLComment / SLComment)
+			la1 = LA(1);
+			if (la1 == '*')
+				MLComment();
+			else
+				SLComment();
+		}
+		void DQString()
+		{
+			int la0, la1;
+			BeginToken();
+			var rs = false;
+			Skip();
+			// Line 38: ( [\\] [^\$] | ["] ["] | [^\$\n\r"\\] )*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 == '\\') {
+					Skip();
+					MatchExcept();
+				} else if (la0 == '"') {
+					la1 = LA(1);
+					if (la1 == '"') {
+						Skip();
+						Skip();
+						rs = true;
+					} else
+						break;
+				} else if (!(la0 == -1 || la0 == '\n' || la0 == '\r'))
+					Skip();
+				else
+					break;
+			}
+			Match('"');
+			EndToken(rs ? TT.RString : TT.String);
+		}
+		void Digit()
+		{
+			MatchRange('0', '9');
+		}
+		void Digits()
+		{
+			int la0;
+			Digit();
+			// Line 50: (Digit)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 >= '0' && la0 <= '9')
+					Digit();
+				else
+					break;
+			}
+		}
+		void Hexs()
+		{
+			int la0;
+			Skip();
+			Skip();
+			// Line 54: ( Digit | [a-f] | [A-F] )
+			la0 = LA0;
+			if (la0 >= '0' && la0 <= '9')
+				Digit();
+			else if (la0 >= 'a' && la0 <= 'f')
+				Skip();
+			else
+				MatchRange('A', 'F');
+			// Line 54: ( Digit | [a-f] | [A-F] )*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 >= '0' && la0 <= '9')
+					Digit();
+				else if (la0 >= 'a' && la0 <= 'f')
+					Skip();
+				else if (la0 >= 'A' && la0 <= 'F')
+					Skip();
+				else
+					break;
+			}
+		}
+		void IdLetter()
+		{
+			Skip();
+		}
+		void Number()
+		{
+			int la0, la1;
+			BeginToken();
+			// Line 62: (Hexs / Digits)
+			la0 = LA0;
+			if (la0 == '0') {
+				la1 = LA(1);
+				if (la1 == 'X' || la1 == 'x')
+					Hexs();
+				else
+					Digits();
+			} else
+				Digits();
+			EndToken(TT.Number);
+		}
+		void Keyword()
+		{
+			int la0;
+			BeginToken();
+			IdLetter();
+			// Line 66: (IdLetter | Digit)*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 >= 'A' && la0 <= 'Z' || la0 == '_' || la0 >= 'a' && la0 <= 'z')
+					IdLetter();
+				else if (la0 >= '0' && la0 <= '9')
+					Digit();
+				else
+					break;
+			}
+			EndToken(TT.Keyword);
+		}
+		void PPDirective()
+		{
+			int la0;
+			MatchRange('a', 'z');
+			// Line 75: ([a-z])*
+			 for (;;) {
+				la0 = LA0;
+				if (la0 >= 'a' && la0 <= 'z')
+					Skip();
+				else
+					break;
+			}
+		}
+		void PreProcess()
+		{
+			BeginToken();
+			Skip();
+			PPDirective();
+			var dt = TT.Preprocessor;
+			EndToken(dt);
+		}
+		static readonly HashSet<int> Other_set0 = NewSet(-1, 9, 10, 11, 13, ' ');
+		void Other()
+		{
+			int la0;
+			BeginToken();
+			MatchExcept(Other_set0);
+			// Line 83: ([^\$\t-\v\r ])*
+			 for (;;) {
+				la0 = LA0;
+				if (!(la0 == -1 || la0 >= '\t' && la0 <= '\x0B' || la0 == '\r' || la0 == ' '))
+					Skip();
+				else
+					break;
+			}
+			EndToken(TT.RawKeyword);
+		}
+		void Token1()
+		{
+			int la1;
+			// Line 87: ( (Newline | Spaces) | (Comment / Other) )
+			 switch (LA0) {
+			case '\n':
+			case '\r':
+				{
+					BeginToken();
+					Newline();
+					EndToken(TT.Newline);
+				}
+				break;
+			case '\t':
+			case '\x0B':
+			case ' ':
+				Spaces();
+				break;
+			case '/':
+				{
+					la1 = LA(1);
+					if (la1 == '*' || la1 == '/')
+						Comment();
+					else
+						Other();
+				}
+				break;
+			default:
+				Other();
+				break;
+			}
+		}
+		void Token2()
+		{
+			int la1;
+			// Line 98: ( (((((((((Newline | Spaces | DQString | Number | Keyword | [,] | [[] | [\]] | [(] | [)] | [{] | [}] | [;] | ['] | [\\] | [.] | [:]) | ([|] [|] / [|])) | ([&] [&] / [&]) | [\^]) | ([!] [=] / [!])) | ([=] [=] / [=])) | ([>] [=] / [>] [>] / [>])) | ([<] [=] / [<] [<] / [<]) | [*]) | (Comment / [/]) | [%]) | ([+] [+] / [+])) | ([\-] [\-] / [\-]) | [~] )
+			 switch (LA0) {
+			case '\n':
+			case '\r':
+				{
+					BeginToken();
+					Newline();
+					EndToken(TT.Newline);
+				}
+				break;
+			case '\t':
+			case '\x0B':
+			case ' ':
+				Spaces();
+				break;
+			case '"':
+				DQString();
+				break;
+			case '0':
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+			case '5':
+			case '6':
+			case '7':
+			case '8':
+			case '9':
+				Number();
+				break;
+			case 'A':
+			case 'B':
+			case 'C':
+			case 'D':
+			case 'E':
+			case 'F':
+			case 'G':
+			case 'H':
+			case 'I':
+			case 'J':
+			case 'K':
+			case 'L':
+			case 'M':
+			case 'N':
+			case 'O':
+			case 'P':
+			case 'Q':
+			case 'R':
+			case 'S':
+			case 'T':
+			case 'U':
+			case 'V':
+			case 'W':
+			case 'X':
+			case 'Y':
+			case 'Z':
+			case '_':
+			case 'a':
+			case 'b':
+			case 'c':
+			case 'd':
+			case 'e':
+			case 'f':
+			case 'g':
+			case 'h':
+			case 'i':
+			case 'j':
+			case 'k':
+			case 'l':
+			case 'm':
+			case 'n':
+			case 'o':
+			case 'p':
+			case 'q':
+			case 'r':
+			case 's':
+			case 't':
+			case 'u':
+			case 'v':
+			case 'w':
+			case 'x':
+			case 'y':
+			case 'z':
+				Keyword();
+				break;
+			case ',':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.Comma);
+				}
+				break;
+			case '[':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.LBrack);
+				}
+				break;
+			case ']':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.RBrack);
+				}
+				break;
+			case '(':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.LParen);
+				}
+				break;
+			case ')':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.RParen);
+				}
+				break;
+			case '{':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.LBrace);
+				}
+				break;
+			case '}':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.RBrace);
+				}
+				break;
+			case ';':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.Semicolon);
+				}
+				break;
+			case '\'':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.Apostrophe);
+				}
+				break;
+			case '\\':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.ReverseSolidus);
+				}
+				break;
+			case '.':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.Dot);
+				}
+				break;
+			case ':':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.Colon);
+				}
+				break;
+			case '|':
+				{
+					la1 = LA(1);
+					if (la1 == '|') {
+						BeginToken();
+						Skip();
+						Skip();
+						EndToken(TT.Or);
+					} else {
+						BeginToken();
+						Skip();
+						EndToken(TT.OrBits);
+					}
+				}
+				break;
+			case '&':
+				{
+					la1 = LA(1);
+					if (la1 == '&') {
+						BeginToken();
+						Skip();
+						Skip();
+						EndToken(TT.And);
+					} else {
+						BeginToken();
+						Skip();
+						EndToken(TT.AndBits);
+					}
+				}
+				break;
+			case '^':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.XorBits);
+				}
+				break;
+			case '!':
+				{
+					la1 = LA(1);
+					if (la1 == '=') {
+						BeginToken();
+						Skip();
+						Skip();
+						EndToken(TT.UnEqual);
+					} else {
+						BeginToken();
+						Skip();
+						EndToken(TT.Not);
+					}
+				}
+				break;
+			case '=':
+				{
+					la1 = LA(1);
+					if (la1 == '=') {
+						BeginToken();
+						Skip();
+						Skip();
+						EndToken(TT.Equal);
+					} else {
+						BeginToken();
+						Skip();
+						EndToken(TT.Assign);
+					}
+				}
+				break;
+			case '>':
+				{
+					la1 = LA(1);
+					if (la1 == '=') {
+						BeginToken();
+						Skip();
+						Skip();
+						EndToken(TT.GreaterThanEqual);
+					} else if (la1 == '>') {
+						BeginToken();
+						Skip();
+						Skip();
+						EndToken(TT.ShiftRight);
+					} else {
+						BeginToken();
+						Skip();
+						EndToken(TT.GreaterThan);
+					}
+				}
+				break;
+			case '<':
+				{
+					la1 = LA(1);
+					if (la1 == '=') {
+						BeginToken();
+						Skip();
+						Skip();
+						EndToken(TT.LessThanEqual);
+					} else if (la1 == '<') {
+						BeginToken();
+						Skip();
+						Skip();
+						EndToken(TT.ShiftLeft);
+					} else {
+						BeginToken();
+						Skip();
+						EndToken(TT.LessThan);
+					}
+				}
+				break;
+			case '*':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.Mul);
+				}
+				break;
+			case '/':
+				{
+					la1 = LA(1);
+					if (la1 == '*' || la1 == '/')
+						Comment();
+					else {
+						BeginToken();
+						Skip();
+						EndToken(TT.Div);
+					}
+				}
+				break;
+			case '%':
+				{
+					BeginToken();
+					Skip();
+					EndToken(TT.Mod);
+				}
+				break;
+			case '+':
+				{
+					la1 = LA(1);
+					if (la1 == '+') {
+						BeginToken();
+						Skip();
+						Skip();
+						EndToken(TT.Inc);
+					} else {
+						BeginToken();
+						Skip();
+						EndToken(TT.Plus);
+					}
+				}
+				break;
+			case '-':
+				{
+					la1 = LA(1);
+					if (la1 == '-') {
+						BeginToken();
+						Skip();
+						Skip();
+						EndToken(TT.Dec);
+					} else {
+						BeginToken();
+						Skip();
+						EndToken(TT.Minus);
+					}
+				}
+				break;
+			default:
+				{
+					BeginToken();
+					Match('~');
+					EndToken(TT.NotBits);
+				}
+				break;
+			}
+		}
+		static readonly HashSet<int> Token_set0 = NewSetOfRanges(9, 11, 13, 13, ' ', '"', '%', '>', 'A', '_', 'a', '~');
+		partial void Token()
+		{
+			int la0, la1;
+			// Line 146: ( &{!IgnorePP} PreProcess | &{RawToken} Token1 | &{!RawToken} Token2 | (-1) )
+			 do {
+				la0 = LA0;
+				if (la0 == '#') {
+					if (!IgnorePP) {
+						if (RawToken) {
+							la1 = LA(1);
+							if (la1 >= 'a' && la1 <= 'z')
+								PreProcess();
+							else
+								goto match2;
+						} else
+							PreProcess();
+					} else
+						goto match2;
+				} else if (Token_set0.Contains(la0)) {
+					if (RawToken)
+						goto match2;
+					else {
+						Check(!RawToken, "!RawToken");
+						Token2();
+					}
+				} else if (la0 != -1)
+					goto match2;
+				else {
+					BeginToken();
+					Skip();
+					EndToken(TT.EOF);
+				}
+				break;
+			match2:
+				{
+					Check(RawToken, "RawToken");
+					Token1();
+				}
+			} while (false);
+		}
+	}
+}

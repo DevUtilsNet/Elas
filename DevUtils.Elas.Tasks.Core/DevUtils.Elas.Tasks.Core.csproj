@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F52C4D6B-4894-42B1-BAF5-2FEBC9F0AB7C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevUtils.Elas.Tasks.Core</RootNamespace>
+    <AssemblyName>DevUtils.Elas.Tasks.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>..\Debug\DevUtils.Elas.Tasks.Core.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>..\Release\DevUtils.Elas.Tasks.Core.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Elas.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="envdte, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Windows\assembly\GAC\EnvDTE\8.0.0.0__b03f5f7f11d50a3a\envdte.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC\Microsoft.VisualStudio.OLE.Interop\7.1.40304.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.OLE.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC\Microsoft.VisualStudio.Shell.Interop\7.1.40304.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Shell.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationBuildTasks" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Properties\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="AppDomainIsolatedTaskExtension.cs" />
+    <Compile Include="Collections\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Collections\Extensions\ListExtensions.cs" />
+    <Compile Include="Collections\InternalList.cs" />
+    <Compile Include="Common\WinNT.cs" />
+    <Compile Include="ElasClearReadOnly.cs" />
+    <Compile Include="EmbeddedResources\ElasImportExistsEmbeddedResource.cs" />
+    <Compile Include="Loyc\BaseParser.cs" />
+    <Compile Include="Loyc\Collections\InternalList`.cs" />
+    <Compile Include="Common\ElasMSResxExportToIntermediateDocument.cs" />
+    <Compile Include="Common\ElasMSResxImportFromIntermediateDocument.cs" />
+    <Compile Include="Diagnostics\ElasTraceSourceBase.cs" />
+    <Compile Include="Diagnostics\ElasTraceSourceCore.cs" />
+    <Compile Include="Diagnostics\Extensions\ProcessExtensions.cs" />
+    <Compile Include="Diagnostics\ObjectDumper.cs" />
+    <Compile Include="Diagnostics\TaskLoggingTraceListener.cs" />
+    <Compile Include="ElasAddFilesToProject.cs" />
+    <Compile Include="ElasAssignIntermediateDocumentPath.cs" />
+    <Compile Include="ElasPretranslate.cs" />
+    <Compile Include="ElasValidateIntermediateDocument.cs" />
+    <Compile Include="EmbeddedResources\ElasExportToIntermediateDocumentEmbeddedResource.cs" />
+    <Compile Include="EmbeddedResources\ElasImportFromIntermediateDocumentEmbeddedResource.cs" />
+    <Compile Include="EmbeddedResources\ElasGetCulturedEmbeddedResource.cs" />
+    <Compile Include="EnvDTE\DTEFactory.cs" />
+    <Compile Include="EnvDTE\Extensions\DTEExtensions.cs" />
+    <Compile Include="EnvDTE\Extensions\ProjectExtensions.cs" />
+    <Compile Include="EnvDTE\Extensions\ProjectItemsExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="IO\Path2.cs" />
+    <Compile Include="Loyc\Collections\IListSource.cs" />
+    <Compile Include="Loyc\EscapeC.cs" />
+    <Compile Include="Loyc\IO\StreamCharSource.cs" />
+    <Compile Include="Loyc\Extensions\CharSourceExtensions.cs" />
+    <Compile Include="Loyc\Token.cs" />
+    <Compile Include="Math2.cs" />
+    <Compile Include="PageMarkup\ElasBindPageMarkupWithGeneratedBaml.cs" />
+    <Compile Include="PageMarkup\ElasExportToIntermediateDocumentPageMarkup.cs" />
+    <Compile Include="PageMarkup\ElasGetCulturedPageMarkup.cs" />
+    <Compile Include="PageMarkup\ElasImportExportIntermediateDocumentPageMarkup.cs" />
+    <Compile Include="PageMarkup\ElasImportFromIntermediateDocumentPageMarkup.cs" />
+    <Compile Include="PageMarkup\ElasResourcesGeneratorPageMarkup.cs" />
+    <Compile Include="PRIResources\ElasAssignSourceLanguagePRIResource.cs" />
+    <Compile Include="PRIResources\ElasExportToIntermediateDocumentPRIResource.cs" />
+    <Compile Include="PRIResources\ElasImportFromIntermediateDocumentPRIResource.cs" />
+    <Compile Include="PRIResources\ElasGetCulturedPRIResource.cs" />
+    <Compile Include="ProjectType.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reflection\Extensions\AssemblyExtensions.cs" />
+    <Compile Include="Reflection\Extensions\MethodBaseExtensions.cs" />
+    <Compile Include="Reflection\M.cs" />
+    <Compile Include="ResourceCompile\ElasExportToIntermediateDocumentResourceCompile.cs" />
+    <Compile Include="ResourceCompile\ElasGetCulturedResourceCompile.cs" />
+    <Compile Include="Loyc\BaseLexer.cs" />
+    <Compile Include="Loyc\ICharSource.cs" />
+    <Compile Include="ResourceCompile\ElasImportFromIntermediateDocumentResourceCompile.cs" />
+    <Compile Include="ResourceCompile\RCImportItemInfo.cs" />
+    <Compile Include="ResourceCompile\RCExporterToIntermediateDocument.cs" />
+    <Compile Include="ResourceCompile\RCImporterFromIntermediateDocument.cs" />
+    <Compile Include="ResourceCompile\RCImportExportParser.cs" />
+    <Compile Include="ResourceCompile\RCLexer.cs" />
+    <Compile Include="ResourceCompile\RCParser.cs" />
+    <Compile Include="ResourceCompile\RCTokenType.cs" />
+    <Compile Include="Runtime\InteropServices\ComTypes\Extensions\RunningObjectTableExtensions.cs" />
+    <Compile Include="TaskException.cs" />
+    <Compile Include="VisualStudio\OLE\Interop\Extensions\ServiceProviderExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\MemberInfoExtensions.cs" />
+    <Compile Include="Build\Framework\Extensions\TaskItemExtensions.cs" />
+    <Compile Include="IO\Extensions\FileInfoExtensions.cs" />
+    <Compile Include="IO\Extensions\FileSystemInfoExtensions.cs" />
+    <Compile Include="MSBuildWellKnownItemMetadates.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskExtension.cs" />
+    <Compile Include="Build\Utilities\Extensions\TaskLoggingHelperExtensions.cs" />
+    <Compile Include="VisualStudio\OLE\Interop\Extensions\VsProjectExtensions.cs" />
+    <Compile Include="VisualStudio\OLE\Interop\Extensions\VsQueryEditQuerySave2Extensions.cs" />
+    <Compile Include="VisualStudio\OLE\Interop\Extensions\VsSolution2Extensions.cs" />
+    <Compile Include="Windows\Markup\Localizer\BamlLocalizabilityResolverByReflection.cs" />
+    <Compile Include="Windows\Markup\Localizer\DefaultAttributes.cs" />
+    <Compile Include="Xliff\Extensions\XliffBaseExtensions.cs" />
+    <Compile Include="Xliff\Extensions\XliffDocumentExtensions.cs" />
+    <Compile Include="Xliff\Extensions\XliffFileExtensions.cs" />
+    <Compile Include="Xliff\Extensions\XliffTargetExtensions.cs" />
+    <Compile Include="Xliff\Extensions\XliffTargetStateExtensions.cs" />
+    <Compile Include="Xliff\Extensions\XliffTransUnitExtensions.cs" />
+    <Compile Include="Xliff\Extensions\XliffUnitCollectionExtensions.cs" />
+    <Compile Include="Xliff\StringValueAttribute.cs" />
+    <Compile Include="Xliff\XliffBase.cs" />
+    <Compile Include="Xliff\XliffDataType.cs" />
+    <Compile Include="Xliff\XliffDocument.cs" />
+    <Compile Include="Xliff\XliffFile.cs" />
+    <Compile Include="Xliff\XliffFileCollection.cs" />
+    <Compile Include="Xliff\XliffGroup.cs" />
+    <Compile Include="Xliff\XliffResType.cs" />
+    <Compile Include="Xliff\XliffSource.cs" />
+    <Compile Include="Xliff\XliffTarget.cs" />
+    <Compile Include="Xliff\XliffTargetState.cs" />
+    <Compile Include="Xliff\XliffTransUnit.cs" />
+    <Compile Include="Xliff\XliffUnit.cs" />
+    <Compile Include="Xliff\XliffUnitCollection.cs" />
+    <Compile Include="Xml\Extensions\XmlReaderExtensions.cs" />
+    <Compile Include="Xml\XmlReaderDepthControl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Elas.snk" />
+    <ECS Include="ResourceCompile\RCParserGrammars.ecs" />
+    <ECS Include="ResourceCompile\RCLexerGrammars.ecs" />
+    <None Include="ResourceCompile\RCParserGrammars.out.ecs" />
+    <None Include="ResourceCompile\RCLexerGrammars.out.ecs" />
+    <None Include="Resources\elas-xliff-extension-1.2-transitional.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\xliff-core-1.2-transitional.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Loyc\Collections\Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <LLLPG>..\LLLPG\LLLPG.exe</LLLPG>
+  </PropertyGroup>
+  <Target Name="LLLPG" AfterTargets="BeforeBuild" Inputs="%(LLLPGCompile.Identity)" Outputs="%(LLLPGCompile.RelativeDir)%(LLLPGCompile.Filename).out%(LLLPGCompile.Extension)">
+    <Exec Command="$(LLLPG) %(LLLPGCompile.Identity)" />
+  </Target>
+  <Target Name="BeforeBuild">
+    <ItemGroup>
+      <LLLPGCompile Include="@(ECS)" Condition="'%(ECS.Extension)' == '.ecs'" />
+      <Compile Include="%(LLLPGCompile.RelativeDir)%(LLLPGCompile.Filename).out.ecs" />
+    </ItemGroup>
+  </Target>
+</Project>

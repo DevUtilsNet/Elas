@@ -1,0 +1,5 @@
+TestMFCApplication.vcxproj
+/t:build
+/v:diag
+/clp:Verbosity=m
+/l:XmlFileLogger,"C:\Program Files (x86)\MSBuild\ExtensionPack\4.0\MSBuild.ExtensionPack.Loggers.dll"

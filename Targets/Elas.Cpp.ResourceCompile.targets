@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<UsingTask TaskName="ElasGetCulturedResourceCompile" AssemblyFile="$(ElasTasksCppAssembly)" />
+	<UsingTask TaskName="ElasExportToIntermediateDocumentResourceCompile" AssemblyFile="$(ElasTasksCppAssembly)" />
+	<UsingTask TaskName="ElasImportFromIntermediateDocumentResourceCompile" AssemblyFile="$(ElasTasksCppAssembly)" />
+
+	<ItemDefinitionGroup>
+		<ElasAssignedResourceCompile>
+			<ElasSourceLanguage>$(DefaultLanguage)</ElasSourceLanguage>
+		</ElasAssignedResourceCompile>
+	</ItemDefinitionGroup>
+
+	<Target Name="ElasAssignIntermediateDocumentPathsResourceCompile">
+
+		<ElasAssignIntermediateDocumentPath Files="@(ResourceCompile)"
+											RootFolder="$(MSBuildProjectDirectory)"
+											Condition="'%(ResourceCompile.Extension)'=='.rc'">
+			<Output TaskParameter="AssignedFiles"
+					ItemName="ElasAssignedResourceCompile" />
+		</ElasAssignIntermediateDocumentPath>
+
+		<ItemGroup>
+			<ElasIntermediateDocumentPathResourceCompile Include="%(ElasAssignedResourceCompile.ElasIntermediateDocumentPath)"/>
+		</ItemGroup>
+
+		<ItemGroup>
+			 <!--Replace items in ResourceCompile with the items emitted by the ElasAssignIntermediateDocumentPath task that have the IntermediateDocumentPath metadata--> 
+			<ResourceCompile Remove="@(ElasAssignedResourceCompile)" />
+			<ResourceCompile Include="@(ElasAssignedResourceCompile)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="ElasIncludeCulturedResourceCompile"
+			BeforeTargets="BeforeResourceCompile"
+			DependsOnTargets="ElasAssignIntermediateDocumentPathsResourceCompile">
+
+		<ElasGetCulturedResourceCompile Files="@(ResourceCompile)"
+											TargetCultures="@(ElasTargetCultures)"
+											IntermediateOutputPath ="$(IntermediateOutputPath)"
+											Condition="'%(ResourceCompile.ElasIntermediateDocumentPath)'!=''">
+			<Output TaskParameter="OutputFiles" ItemName="FileWrites" />
+			<Output TaskParameter="OutputFiles" ItemName="ResourceCompile" />
+			<Output TaskParameter="OutputFiles" ItemName="ElasResourceCompile" />
+		</ElasGetCulturedResourceCompile>
+	</Target>
+
+	<Target Name="ElasExportToIntermediateDocumentResourceCompile"
+			Outputs="@(ElasIntermediateDocumentPathResourceCompile)"
+			Inputs="$(ElasConfigurationPath);@(ElasAssignedResourceCompile)"
+			DependsOnTargets="ElasAssignIntermediateDocumentPathsResourceCompile" >
+
+		<ElasExportToIntermediateDocumentResourceCompile Files="@(ElasAssignedResourceCompile)" 
+														 TargetCultures="@(ElasTargetCultures)"
+														 ConfigurationPath="$(ElasConfigurationPath)"/>
+
+	</Target>
+
+	<Target Name="ElasPretranslateResourceCompile"
+			Outputs="@(ElasResourceCompile)"
+			Inputs="@(ElasIntermediateDocumentPathResourceCompile)"
+			AfterTargets="ElasExportToIntermediateDocumentResourceCompile">
+
+		<ElasPretranslate ConfigurationPath="$(ElasConfigurationPath)"
+						  Files="@(ElasIntermediateDocumentPathResourceCompile)" />
+
+	</Target>
+
+	<Target Name="ElasValidateIntermediateDocumentResourceCompile"
+			BeforeTargets="ElasImportFromIntermediateDocumentResourceCompile">
+
+		<ElasValidateIntermediateDocument TargetCultures="@(ElasTargetCultures)"
+										  TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+										  Files="@(ElasIntermediateDocumentPathResourceCompile)" />
+
+	</Target>
+
+	<Target Name="ElasImportFromIntermediateDocumentResourceCompile"
+			BeforeTargets="ResourceCompile"
+			Outputs="@(ElasResourceCompile)"
+			Inputs="@(ElasIntermediateDocumentPathResourceCompile)"
+			DependsOnTargets="ElasExportToIntermediateDocumentResourceCompile">
+
+		<ElasImportFromIntermediateDocumentResourceCompile Files="@(ElasResourceCompile)"/>
+
+	</Target>
+</Project>

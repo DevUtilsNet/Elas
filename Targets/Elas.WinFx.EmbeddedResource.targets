@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<UsingTask TaskName="ElasGetCulturedEmbeddedResource" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	<UsingTask TaskName="ElasImportExistsEmbeddedResource" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	<UsingTask TaskName="ElasExportToIntermediateDocumentEmbeddedResource" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	<UsingTask TaskName="ElasImportFromIntermediateDocumentEmbeddedResource" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+
+	<!--Silverlight-->
+	<PropertyGroup>
+		<SupportedCultures>@(ElasTargetCultures)</SupportedCultures>
+		
+		<!-- incompatability condition in ComputeIntermediateSatelliteAssemblies -->
+		<CategorizeSilverlightReferencesDependsOn>
+			$(CategorizeSilverlightReferencesDependsOn);
+			ElasImportFromIntermediateDocumentEmbeddedResource;
+			ComputeIntermediateSatelliteAssemblies
+		</CategorizeSilverlightReferencesDependsOn>
+	</PropertyGroup>
+
+	<ItemDefinitionGroup>
+		<ElasAssignedEmbeddedResource>
+			<ElasSourceLanguage>$(DefaultLanguage)</ElasSourceLanguage>
+		</ElasAssignedEmbeddedResource>
+	</ItemDefinitionGroup>
+
+	<Target Name="ElasAssignIntermediateDocumentPathsEmbeddedResource">
+
+		<ElasAssignIntermediateDocumentPath Files="@(EmbeddedResource)"
+											RootFolder="$(MSBuildProjectDirectory)"
+											Condition="'%(EmbeddedResource.Type)'=='Resx' AND '%(EmbeddedResource.WithCulture)'=='false' AND '%(EmbeddedResource.GenerateResource)' != 'false'">
+			<Output TaskParameter="AssignedFiles" 
+					ItemName="ElasAssignedEmbeddedResource" />
+		</ElasAssignIntermediateDocumentPath>
+
+		<ItemGroup>
+			<ElasIntermediateDocumentPathEmbeddedResource Include="%(ElasAssignedEmbeddedResource.ElasIntermediateDocumentPath)">
+				<ElasSourceLanguage>%(ElasAssignedEmbeddedResource.ElasSourceLanguage)</ElasSourceLanguage>
+				<ElasSourceItemSpec>%(ElasAssignedEmbeddedResource.ElasSourceItemSpec)</ElasSourceItemSpec>
+			</ElasIntermediateDocumentPathEmbeddedResource>
+		</ItemGroup>
+
+		<ItemGroup>
+			 <!--Replace items in EmbeddedResource with the items emitted by the ElasAssignIntermediateDocumentPath task that have the IntermediateDocumentPath metadata--> 
+			<EmbeddedResource Remove="@(ElasAssignedEmbeddedResource)" />
+			<EmbeddedResource Include="@(ElasAssignedEmbeddedResource)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="ElasIncludeCulturedEmbeddedResource"
+			AfterTargets="SplitResourcesByCulture"
+			DependsOnTargets="ElasAssignIntermediateDocumentPathsEmbeddedResource">
+
+		<ElasGetCulturedEmbeddedResource Files="@(EmbeddedResource)" 
+										 TargetCultures="@(ElasTargetCultures)" 
+										 RootFolder="$(MSBuildProjectDirectory)"
+										 IntermediateOutputPath ="$(IntermediateOutputPath)"
+										 Condition="'%(EmbeddedResource.ElasIntermediateDocumentPath)'!=''">
+			<Output TaskParameter="OutputFiles" ItemName="FileWrites" />
+			<Output TaskParameter="OutputFiles" ItemName="EmbeddedResource" />
+			<Output TaskParameter="OutputFiles" ItemName="ElasEmbeddedResource" />
+		</ElasGetCulturedEmbeddedResource>
+
+	</Target>
+
+	<Target Name="ElasImportExistsEmbeddedResource" 
+			Inputs="@(ElasIntermediateDocumentPathEmbeddedResource)" 
+			Outputs="@(ElasIntermediateDocumentPathEmbeddedResource)"
+			BeforeTargets="ElasExportToIntermediateDocumentEmbeddedResource">
+
+		<ElasImportExistsEmbeddedResource TargetCultures="@(ElasTargetCultures)"
+										  EmbeddedResource="@(EmbeddedResource)" 
+										  IntermediateDocuments="@(ElasIntermediateDocumentPathEmbeddedResource)" >
+		</ElasImportExistsEmbeddedResource>
+
+	</Target>
+
+	<Target Name="ElasExportToIntermediateDocumentEmbeddedResource"
+			Outputs="@(ElasIntermediateDocumentPathEmbeddedResource)"
+			Inputs="$(ElasConfigurationPath);@(ElasAssignedEmbeddedResource)"
+			DependsOnTargets="ElasAssignIntermediateDocumentPathsEmbeddedResource" >
+
+		<ElasExportToIntermediateDocumentEmbeddedResource TargetCultures="@(ElasTargetCultures)"
+														  Files="@(ElasAssignedEmbeddedResource)"
+														  ConfigurationPath="$(ElasConfigurationPath)" />
+
+	</Target>
+
+	<Target Name="ElasPretranslateEmbeddedResource"
+			Outputs="@(ElasEmbeddedResource)"
+			Inputs="@(ElasIntermediateDocumentPathEmbeddedResource)"
+			AfterTargets="ElasExportToIntermediateDocumentEmbeddedResource">
+
+		<ElasPretranslate ConfigurationPath="$(ElasConfigurationPath)"
+						  Files="@(ElasIntermediateDocumentPathEmbeddedResource)" />
+
+	</Target>
+
+	<Target Name="ElasValidateIntermediateDocumentEmbeddedResource" 
+			BeforeTargets="ElasImportFromIntermediateDocumentEmbeddedResource">
+
+		<ElasValidateIntermediateDocument TargetCultures="@(ElasTargetCultures)"
+										  TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+										  Files="@(ElasIntermediateDocumentPathEmbeddedResource)" />
+
+	</Target>
+
+	<Target Name="ElasImportFromIntermediateDocumentEmbeddedResource" 
+			BeforeTargets="CoreResGen" 
+			Outputs="@(ElasEmbeddedResource)"
+			Inputs="@(ElasIntermediateDocumentPathEmbeddedResource)" 
+			DependsOnTargets="ElasExportToIntermediateDocumentEmbeddedResource">
+
+		<ElasImportFromIntermediateDocumentEmbeddedResource Files="@(ElasEmbeddedResource)"/>
+	</Target>
+
+</Project>

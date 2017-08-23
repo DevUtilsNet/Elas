@@ -1,0 +1,1857 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns:elas="urn:devutils:names:tc:xliff:document:1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="TestMFCApplication.rc" source-language="en-US" target-language="ru-RU" datatype="winres">
+		<header>
+			<tool tool-version="1.0.10.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=1.0.10.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" />
+		</header>
+		<body>
+			<group id="IDR">
+				<group id="IDR_MAINFRAME" restype="menu">
+					<group id="5FD4951" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;File</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_NEW" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;New\tCtrl+N</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_OPEN" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Open...\tCtrl+O</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_CLOSE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Close</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT_SETUP" translate="yes" restype="menuitem">
+							<source xml:space="preserve">P&amp;rint Setup...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE1" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Recent File</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_APP_EXIT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">E&amp;xit</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="5FD4951.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;File</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="4B2D8E7A" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;View</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<group id="E199D4B6" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Toolbars and Docking Windows</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_TOOLBAR" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&lt;placeholder&gt;</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="E199D4B6.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Toolbars and Docking Windows</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+						<trans-unit id="ID_VIEW_STATUS_BAR" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Status Bar</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<group id="10233E4" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Application Look</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_WIN_2000" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Windows &amp;2000</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_OFF_XP" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Office &amp;XP</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_WIN_XP" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Windows XP</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_OFF_2003" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Office 200&amp;3</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_VS_2005" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Visual Studio 200&amp;5</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_VS_2008" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Visual Studio 200&amp;8</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<group id="BF143A50" restype="menu">
+								<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+									<source xml:space="preserve">Office 200&amp;7</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLUE" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Blue Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLACK" translate="yes" restype="menuitem">
+									<source xml:space="preserve">B&amp;lack Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_SILVER" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Silver Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_AQUA" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Aqua Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="BF143A50.$PopupRef" translate="yes" restype="popupmenu">
+									<source xml:space="preserve">Office 200&amp;7</source>
+									<target xml:space="preserve" state="new" />
+								</trans-unit>
+							</group>
+							<trans-unit id="10233E4.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Application Look</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+						<trans-unit id="4B2D8E7A.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;View</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="DFC32316" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Help</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_APP_ABOUT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;About TestMFCApplication...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="DFC32316.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Help</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+				</group>
+				<group id="IDR_TestMFCApplicationTYPE" restype="menu">
+					<group id="5FD4951" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;File</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_NEW" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;New\tCtrl+N</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_OPEN" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Open...\tCtrl+O</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_CLOSE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Close</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_SAVE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Save\tCtrl+S</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_SAVE_AS" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Save &amp;As...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Print...\tCtrl+P</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT_PREVIEW" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Print Pre&amp;view</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT_SETUP" translate="yes" restype="menuitem">
+							<source xml:space="preserve">P&amp;rint Setup...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE1" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Recent File</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_APP_EXIT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">E&amp;xit</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="5FD4951.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;File</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="7E8AC1DF" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Edit</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_EDIT_UNDO" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Undo\tCtrl+Z</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_EDIT_CUT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Cu&amp;t\tCtrl+X</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_EDIT_COPY" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Copy\tCtrl+C</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_EDIT_PASTE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Paste\tCtrl+V</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="7E8AC1DF.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Edit</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="4B2D8E7A" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;View</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<group id="E199D4B6" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Toolbars and Docking Windows</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_TOOLBAR" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&lt;placeholder&gt;</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="E199D4B6.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Toolbars and Docking Windows</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+						<trans-unit id="ID_VIEW_STATUS_BAR" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Status Bar</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<group id="10233E4" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Application Look</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_WIN_2000" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Windows &amp;2000</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_OFF_XP" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Office &amp;XP</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_WIN_XP" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Windows XP</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_OFF_2003" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Office 200&amp;3</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_VS_2005" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Visual Studio 200&amp;5</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_VS_2008" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Visual Studio 200&amp;8</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<group id="BF143A50" restype="menu">
+								<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+									<source xml:space="preserve">Office 200&amp;7</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLUE" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Blue Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLACK" translate="yes" restype="menuitem">
+									<source xml:space="preserve">B&amp;lack Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_SILVER" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Silver Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_AQUA" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Aqua Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="BF143A50.$PopupRef" translate="yes" restype="popupmenu">
+									<source xml:space="preserve">Office 200&amp;7</source>
+									<target xml:space="preserve" state="new" />
+								</trans-unit>
+							</group>
+							<trans-unit id="10233E4.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Application Look</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+						<trans-unit id="4B2D8E7A.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;View</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="EE478E85" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Window</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_WINDOW_NEW" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;New Window</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_WINDOW_CASCADE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Cascade</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_WINDOW_TILE_HORZ" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Tile</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_WINDOW_ARRANGE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Arrange Icons</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="EE478E85.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Window</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="DFC32316" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Help</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_APP_ABOUT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;About TestMFCApplication...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="DFC32316.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Help</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+				</group>
+				<group id="POPUP">
+					<group id="IDR_POPUP_EDIT" restype="menu">
+						<group id="E33A71BB" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">Edit</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_CUT" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Cu&amp;t\tCtrl+X</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_COPY" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Copy\tCtrl+C</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_PASTE" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Paste\tCtrl+V</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="E33A71BB.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">Edit</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+					</group>
+					<group id="IDR_POPUP_SORT" restype="menu">
+						<group id="BDE3E833" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">Sorting</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_SORTING_SORTALPHABETIC" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Sort Alphabeticaly</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_SORTING_SORTBYTYPE" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Sort by &amp;Type</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_SORTING_SORTBYACCESS" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Sort by Acc&amp;ess</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_SORTING_GROUPBYTYPE" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Group by t&amp;ype</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="BDE3E833.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">Sorting</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+					</group>
+					<group id="IDR_POPUP_EXPLORER" restype="menu">
+						<group id="25CC1B70" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">Explorer</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_OPEN" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Open</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_OPEN_WITH" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Open &amp;With....</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_DUMMY_COMPILE" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Compile</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_CUT" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Cu&amp;t\tCtrl+X</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_COPY" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Copy\tCtrl+C</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_CLEAR" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Remove</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_PROPERTIES" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Properties...</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="25CC1B70.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">Explorer</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+					</group>
+				</group>
+				<group id="OUTPUT">
+					<group id="IDR_OUTPUT_POPUP" restype="menu">
+						<group id="A229E31B" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">Popup</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_COPY" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Copy</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_CLEAR" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Clear</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_OUTPUTWND" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Hide</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="A229E31B.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">Popup</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+					</group>
+				</group>
+				<group id="HELP">
+					<group id="IDR_HELP_MENU" restype="menu">
+						<trans-unit id="ID_APP_ABOUT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;About TestMFCApplication...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+				<group id="THEME">
+					<group id="IDR_THEME_MENU" restype="menu">
+						<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLUE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Office 2007 (&amp;Blue Style)</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLACK" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Office 2007 (B&amp;lack Style)</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_SILVER" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Office 2007 (&amp;Silver Style)</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_AQUA" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Office 2007 (&amp;Aqua Style)</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_VIEW_APPLOOK_WINDOWS_7" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Win&amp;dows 7</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+				<trans-unit id="IDR_MAINFRAME" translate="yes" restype="string">
+					<source xml:space="preserve">TestMFCApplication</source>
+					<target xml:space="preserve" state="new"></target>
+				</trans-unit>
+				<trans-unit id="IDR_TestMFCApplicationTYPE" translate="yes" restype="string">
+					<source xml:space="preserve">\nTestMFCApplication\nTestMFCApplication\nTestMFCApplication Files (*.DocumentTemplate)\n.DocumentTemplate\nTestMFCApplication.Document\nTestMFCApplication.Document</source>
+					<target xml:space="preserve" state="new"></target>
+				</trans-unit>
+			</group>
+			<group id="IDD">
+				<group id="IDD_ABOUTBOX" restype="dialog">
+					<trans-unit id="IDC_STATIC_AAC97ECE" translate="yes" restype="ltext">
+						<source xml:space="preserve">TestMFCApplication, Version 1.0</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="IDC_STATIC_E352917D" translate="yes" restype="ltext">
+						<source xml:space="preserve">Copyright (C) 2014</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="IDOK" translate="yes" restype="defpushbutton">
+						<source xml:space="preserve">OK</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+			</group>
+			<group id="IDP">
+				<group id="OLE">
+					<group id="INIT">
+						<trans-unit id="IDP_OLE_INIT_FAILED" translate="yes" restype="string">
+							<source xml:space="preserve">OLE initialization failed.  Make sure that the OLE libraries are the correct version.</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+			</group>
+			<group id="AFX">
+				<group id="IDS">
+					<group id="APP">
+						<trans-unit id="AFX_IDS_APP_TITLE" translate="yes" restype="string">
+							<source xml:space="preserve">TestMFCApplication</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<trans-unit id="AFX_IDS_IDLEMESSAGE" translate="yes" restype="string">
+						<source xml:space="preserve">Ready</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCSIZE" translate="yes" restype="string">
+						<source xml:space="preserve">Change the window size</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCMOVE" translate="yes" restype="string">
+						<source xml:space="preserve">Change the window position</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCMINIMIZE" translate="yes" restype="string">
+						<source xml:space="preserve">Reduce the window to an icon</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCMAXIMIZE" translate="yes" restype="string">
+						<source xml:space="preserve">Enlarge the window to full size</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCNEXTWINDOW" translate="yes" restype="string">
+						<source xml:space="preserve">Switch to the next document window</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCPREVWINDOW" translate="yes" restype="string">
+						<source xml:space="preserve">Switch to the previous document window</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCCLOSE" translate="yes" restype="string">
+						<source xml:space="preserve">Close the active window and prompts to save the documents</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCRESTORE" translate="yes" restype="string">
+						<source xml:space="preserve">Restore the window to normal size</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCTASKLIST" translate="yes" restype="string">
+						<source xml:space="preserve">Activate Task List</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_MDICHILD" translate="yes" restype="string">
+						<source xml:space="preserve">Activate this window</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="PREVIEW">
+						<trans-unit id="AFX_IDS_PREVIEW_CLOSE" translate="yes" restype="string">
+							<source xml:space="preserve">Close print preview mode\nCancel Preview</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+			</group>
+			<group id="ID">
+				<group id="INDICATOR">
+					<trans-unit id="ID_INDICATOR_EXT" translate="yes" restype="string">
+						<source xml:space="preserve">EXT</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_INDICATOR_CAPS" translate="yes" restype="string">
+						<source xml:space="preserve">CAP</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_INDICATOR_NUM" translate="yes" restype="string">
+						<source xml:space="preserve">NUM</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_INDICATOR_SCRL" translate="yes" restype="string">
+						<source xml:space="preserve">SCRL</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_INDICATOR_OVR" translate="yes" restype="string">
+						<source xml:space="preserve">OVR</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_INDICATOR_REC" translate="yes" restype="string">
+						<source xml:space="preserve">REC</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="FILE">
+					<trans-unit id="ID_FILE_NEW" translate="yes" restype="string">
+						<source xml:space="preserve">Create a new document\nNew</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_FILE_OPEN" translate="yes" restype="string">
+						<source xml:space="preserve">Open an existing document\nOpen</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_FILE_CLOSE" translate="yes" restype="string">
+						<source xml:space="preserve">Close the active document\nClose</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_FILE_SAVE" translate="yes" restype="string">
+						<source xml:space="preserve">Save the active document\nSave</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="SAVE">
+						<trans-unit id="ID_FILE_SAVE_AS" translate="yes" restype="string">
+							<source xml:space="preserve">Save the active document with a new name\nSave As</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<group id="PAGE">
+						<trans-unit id="ID_FILE_PAGE_SETUP" translate="yes" restype="string">
+							<source xml:space="preserve">Change the printing options\nPage Setup</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<group id="PRINT">
+						<trans-unit id="ID_FILE_PRINT_SETUP" translate="yes" restype="string">
+							<source xml:space="preserve">Change the printer and printing options\nPrint Setup</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT_DIRECT" translate="yes" restype="string">
+							<source xml:space="preserve">Print the active document using current options\nQuick Print</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT_PREVIEW" translate="yes" restype="string">
+							<source xml:space="preserve">Display full pages\nPrint Preview</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<trans-unit id="ID_FILE_PRINT" translate="yes" restype="string">
+						<source xml:space="preserve">Print the active document\nPrint</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="MRU">
+						<trans-unit id="ID_FILE_MRU_FILE1" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE2" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE3" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE4" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE5" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE6" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE7" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE8" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE9" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE10" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE11" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE12" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE13" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE14" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE15" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE16" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+				<group id="APP">
+					<trans-unit id="ID_APP_ABOUT" translate="yes" restype="string">
+						<source xml:space="preserve">Display program information, version number and copyright\nAbout</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_APP_EXIT" translate="yes" restype="string">
+						<source xml:space="preserve">Quit the application; prompts to save documents\nExit</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="NEXT">
+					<trans-unit id="ID_NEXT_PANE" translate="yes" restype="string">
+						<source xml:space="preserve">Switch to the next window pane\nNext Pane</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="PREV">
+					<trans-unit id="ID_PREV_PANE" translate="yes" restype="string">
+						<source xml:space="preserve">Switch back to the previous window pane\nPrevious Pane</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="WINDOW">
+					<trans-unit id="ID_WINDOW_NEW" translate="yes" restype="string">
+						<source xml:space="preserve">Open another window for the active document\nNew Window</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_WINDOW_ARRANGE" translate="yes" restype="string">
+						<source xml:space="preserve">Arrange icons at the bottom of the window\nArrange Icons</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_WINDOW_CASCADE" translate="yes" restype="string">
+						<source xml:space="preserve">Arrange windows so they overlap\nCascade Windows</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="TILE">
+						<trans-unit id="ID_WINDOW_TILE_HORZ" translate="yes" restype="string">
+							<source xml:space="preserve">Arrange windows as non-overlapping tiles\nTile Windows</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_WINDOW_TILE_VERT" translate="yes" restype="string">
+							<source xml:space="preserve">Arrange windows as non-overlapping tiles\nTile Windows</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<trans-unit id="ID_WINDOW_SPLIT" translate="yes" restype="string">
+						<source xml:space="preserve">Split the active window into panes\nSplit</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_WINDOW_MANAGER" translate="yes" restype="string">
+						<source xml:space="preserve">&amp;Windows...</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="EDIT">
+					<trans-unit id="ID_EDIT_CLEAR" translate="yes" restype="string">
+						<source xml:space="preserve">Erase the selection\nErase</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="CLEAR">
+						<trans-unit id="ID_EDIT_CLEAR_ALL" translate="yes" restype="string">
+							<source xml:space="preserve">Erase everything\nErase All</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<trans-unit id="ID_EDIT_COPY" translate="yes" restype="string">
+						<source xml:space="preserve">Copy the selection and put it on the Clipboard\nCopy</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_CUT" translate="yes" restype="string">
+						<source xml:space="preserve">Cut the selection and put it on the Clipboard\nCut</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_FIND" translate="yes" restype="string">
+						<source xml:space="preserve">Find the specified text\nFind</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_PASTE" translate="yes" restype="string">
+						<source xml:space="preserve">Insert Clipboard contents\nPaste</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_REPEAT" translate="yes" restype="string">
+						<source xml:space="preserve">Repeat the last action\nRepeat</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_REPLACE" translate="yes" restype="string">
+						<source xml:space="preserve">Replace specific text with different text\nReplace</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="SELECT">
+						<trans-unit id="ID_EDIT_SELECT_ALL" translate="yes" restype="string">
+							<source xml:space="preserve">Select the entire document\nSelect All</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<trans-unit id="ID_EDIT_UNDO" translate="yes" restype="string">
+						<source xml:space="preserve">Undo the last action\nUndo</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_REDO" translate="yes" restype="string">
+						<source xml:space="preserve">Redo the previously undone action\nRedo</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="VIEW">
+					<group id="STATUS">
+						<trans-unit id="ID_VIEW_STATUS_BAR" translate="yes" restype="string">
+							<source xml:space="preserve">Show or hide the status bar\nToggle Status Bar</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+			</group>
+			<group id="IDS">
+				<group id="STATUS">
+					<trans-unit id="IDS_STATUS_PANE1" translate="yes" restype="string">
+						<source xml:space="preserve">Pane 1</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="IDS_STATUS_PANE2" translate="yes" restype="string">
+						<source xml:space="preserve">Pane 2</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="TOOLBAR">
+					<trans-unit id="IDS_TOOLBAR_STANDARD" translate="yes" restype="string">
+						<source xml:space="preserve">Standard</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="IDS_TOOLBAR_CUSTOMIZE" translate="yes" restype="string">
+						<source xml:space="preserve">Customize...</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="FILE">
+					<trans-unit id="IDS_FILE_VIEW" translate="yes" restype="string">
+						<source xml:space="preserve">File View</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="CLASS">
+					<trans-unit id="IDS_CLASS_VIEW" translate="yes" restype="string">
+						<source xml:space="preserve">Class View</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<trans-unit id="IDS_EXPLORER" translate="yes" restype="string">
+					<source xml:space="preserve">Explorer</source>
+					<target xml:space="preserve" state="new"></target>
+				</trans-unit>
+				<group id="OUTPUT">
+					<trans-unit id="IDS_OUTPUT_WND" translate="yes" restype="string">
+						<source xml:space="preserve">Output</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="BUILD">
+					<trans-unit id="IDS_BUILD_TAB" translate="yes" restype="string">
+						<source xml:space="preserve">Build</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="DEBUG">
+					<trans-unit id="IDS_DEBUG_TAB" translate="yes" restype="string">
+						<source xml:space="preserve">Debug</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="FIND">
+					<trans-unit id="IDS_FIND_TAB" translate="yes" restype="string">
+						<source xml:space="preserve">Find</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="PROPERTIES">
+					<trans-unit id="IDS_PROPERTIES_WND" translate="yes" restype="string">
+						<source xml:space="preserve">Properties</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="EDIT">
+					<trans-unit id="IDS_EDIT_MENU" translate="yes" restype="string">
+						<source xml:space="preserve">Edit</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+			</group>
+		</body>
+	</file>
+	<file original="TestMFCApplication.rc" source-language="en-US" target-language="de-DE" datatype="winres">
+		<header>
+			<tool tool-version="1.0.10.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=1.0.10.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" />
+		</header>
+		<body>
+			<group id="IDR">
+				<group id="IDR_MAINFRAME" restype="menu">
+					<group id="5FD4951" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;File</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_NEW" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;New\tCtrl+N</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_OPEN" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Open...\tCtrl+O</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_CLOSE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Close</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT_SETUP" translate="yes" restype="menuitem">
+							<source xml:space="preserve">P&amp;rint Setup...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE1" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Recent File</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_APP_EXIT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">E&amp;xit</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="5FD4951.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;File</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="4B2D8E7A" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;View</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<group id="E199D4B6" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Toolbars and Docking Windows</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_TOOLBAR" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&lt;placeholder&gt;</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="E199D4B6.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Toolbars and Docking Windows</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+						<trans-unit id="ID_VIEW_STATUS_BAR" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Status Bar</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<group id="10233E4" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Application Look</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_WIN_2000" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Windows &amp;2000</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_OFF_XP" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Office &amp;XP</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_WIN_XP" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Windows XP</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_OFF_2003" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Office 200&amp;3</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_VS_2005" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Visual Studio 200&amp;5</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_VS_2008" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Visual Studio 200&amp;8</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<group id="BF143A50" restype="menu">
+								<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+									<source xml:space="preserve">Office 200&amp;7</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLUE" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Blue Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLACK" translate="yes" restype="menuitem">
+									<source xml:space="preserve">B&amp;lack Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_SILVER" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Silver Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_AQUA" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Aqua Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="BF143A50.$PopupRef" translate="yes" restype="popupmenu">
+									<source xml:space="preserve">Office 200&amp;7</source>
+									<target xml:space="preserve" state="new" />
+								</trans-unit>
+							</group>
+							<trans-unit id="10233E4.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Application Look</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+						<trans-unit id="4B2D8E7A.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;View</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="DFC32316" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Help</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_APP_ABOUT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;About TestMFCApplication...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="DFC32316.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Help</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+				</group>
+				<group id="IDR_TestMFCApplicationTYPE" restype="menu">
+					<group id="5FD4951" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;File</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_NEW" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;New\tCtrl+N</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_OPEN" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Open...\tCtrl+O</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_CLOSE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Close</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_SAVE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Save\tCtrl+S</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_SAVE_AS" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Save &amp;As...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Print...\tCtrl+P</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT_PREVIEW" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Print Pre&amp;view</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT_SETUP" translate="yes" restype="menuitem">
+							<source xml:space="preserve">P&amp;rint Setup...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE1" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Recent File</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_APP_EXIT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">E&amp;xit</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="5FD4951.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;File</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="7E8AC1DF" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Edit</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_EDIT_UNDO" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Undo\tCtrl+Z</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_EDIT_CUT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Cu&amp;t\tCtrl+X</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_EDIT_COPY" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Copy\tCtrl+C</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_EDIT_PASTE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Paste\tCtrl+V</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="7E8AC1DF.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Edit</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="4B2D8E7A" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;View</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<group id="E199D4B6" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Toolbars and Docking Windows</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_TOOLBAR" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&lt;placeholder&gt;</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="E199D4B6.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Toolbars and Docking Windows</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+						<trans-unit id="ID_VIEW_STATUS_BAR" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Status Bar</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<group id="10233E4" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Application Look</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_WIN_2000" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Windows &amp;2000</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_OFF_XP" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Office &amp;XP</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_WIN_XP" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Windows XP</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_OFF_2003" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Office 200&amp;3</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_VS_2005" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Visual Studio 200&amp;5</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_APPLOOK_VS_2008" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Visual Studio 200&amp;8</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<group id="BF143A50" restype="menu">
+								<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+									<source xml:space="preserve">Office 200&amp;7</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLUE" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Blue Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLACK" translate="yes" restype="menuitem">
+									<source xml:space="preserve">B&amp;lack Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_SILVER" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Silver Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_AQUA" translate="yes" restype="menuitem">
+									<source xml:space="preserve">&amp;Aqua Style</source>
+									<target xml:space="preserve" state="new"></target>
+								</trans-unit>
+								<trans-unit id="BF143A50.$PopupRef" translate="yes" restype="popupmenu">
+									<source xml:space="preserve">Office 200&amp;7</source>
+									<target xml:space="preserve" state="new" />
+								</trans-unit>
+							</group>
+							<trans-unit id="10233E4.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">&amp;Application Look</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+						<trans-unit id="4B2D8E7A.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;View</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="EE478E85" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Window</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_WINDOW_NEW" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;New Window</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_WINDOW_CASCADE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Cascade</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_WINDOW_TILE_HORZ" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Tile</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_WINDOW_ARRANGE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;Arrange Icons</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="EE478E85.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Window</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+					<group id="DFC32316" restype="menu">
+						<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Help</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_APP_ABOUT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;About TestMFCApplication...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="DFC32316.$PopupRef" translate="yes" restype="popupmenu">
+							<source xml:space="preserve">&amp;Help</source>
+							<target xml:space="preserve" state="new" />
+						</trans-unit>
+					</group>
+				</group>
+				<group id="POPUP">
+					<group id="IDR_POPUP_EDIT" restype="menu">
+						<group id="E33A71BB" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">Edit</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_CUT" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Cu&amp;t\tCtrl+X</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_COPY" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Copy\tCtrl+C</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_PASTE" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Paste\tCtrl+V</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="E33A71BB.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">Edit</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+					</group>
+					<group id="IDR_POPUP_SORT" restype="menu">
+						<group id="BDE3E833" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">Sorting</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_SORTING_SORTALPHABETIC" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Sort Alphabeticaly</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_SORTING_SORTBYTYPE" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Sort by &amp;Type</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_SORTING_SORTBYACCESS" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Sort by Acc&amp;ess</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_SORTING_GROUPBYTYPE" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Group by t&amp;ype</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="BDE3E833.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">Sorting</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+					</group>
+					<group id="IDR_POPUP_EXPLORER" restype="menu">
+						<group id="25CC1B70" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">Explorer</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_OPEN" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Open</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_OPEN_WITH" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Open &amp;With....</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_DUMMY_COMPILE" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Compile</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_CUT" translate="yes" restype="menuitem">
+								<source xml:space="preserve">Cu&amp;t\tCtrl+X</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_COPY" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Copy\tCtrl+C</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_CLEAR" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Remove</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_PROPERTIES" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Properties...</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="25CC1B70.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">Explorer</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+					</group>
+				</group>
+				<group id="OUTPUT">
+					<group id="IDR_OUTPUT_POPUP" restype="menu">
+						<group id="A229E31B" restype="menu">
+							<trans-unit id="$PopupRef" translate="yes" elas:absent="yes" restype="popupmenu">
+								<source xml:space="preserve">Popup</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_COPY" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Copy</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_EDIT_CLEAR" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Clear</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="ID_VIEW_OUTPUTWND" translate="yes" restype="menuitem">
+								<source xml:space="preserve">&amp;Hide</source>
+								<target xml:space="preserve" state="new"></target>
+							</trans-unit>
+							<trans-unit id="A229E31B.$PopupRef" translate="yes" restype="popupmenu">
+								<source xml:space="preserve">Popup</source>
+								<target xml:space="preserve" state="new" />
+							</trans-unit>
+						</group>
+					</group>
+				</group>
+				<group id="HELP">
+					<group id="IDR_HELP_MENU" restype="menu">
+						<trans-unit id="ID_APP_ABOUT" translate="yes" restype="menuitem">
+							<source xml:space="preserve">&amp;About TestMFCApplication...</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+				<group id="THEME">
+					<group id="IDR_THEME_MENU" restype="menu">
+						<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLUE" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Office 2007 (&amp;Blue Style)</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_BLACK" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Office 2007 (B&amp;lack Style)</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_SILVER" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Office 2007 (&amp;Silver Style)</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_VIEW_APPLOOK_OFF_2007_AQUA" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Office 2007 (&amp;Aqua Style)</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_VIEW_APPLOOK_WINDOWS_7" translate="yes" restype="menuitem">
+							<source xml:space="preserve">Win&amp;dows 7</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+				<trans-unit id="IDR_MAINFRAME" translate="yes" restype="string">
+					<source xml:space="preserve">TestMFCApplication</source>
+					<target xml:space="preserve" state="new"></target>
+				</trans-unit>
+				<trans-unit id="IDR_TestMFCApplicationTYPE" translate="yes" restype="string">
+					<source xml:space="preserve">\nTestMFCApplication\nTestMFCApplication\nTestMFCApplication Files (*.DocumentTemplate)\n.DocumentTemplate\nTestMFCApplication.Document\nTestMFCApplication.Document</source>
+					<target xml:space="preserve" state="new"></target>
+				</trans-unit>
+			</group>
+			<group id="IDD">
+				<group id="IDD_ABOUTBOX" restype="dialog">
+					<trans-unit id="IDC_STATIC_AAC97ECE" translate="yes" restype="ltext">
+						<source xml:space="preserve">TestMFCApplication, Version 1.0</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="IDC_STATIC_E352917D" translate="yes" restype="ltext">
+						<source xml:space="preserve">Copyright (C) 2014</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="IDOK" translate="yes" restype="defpushbutton">
+						<source xml:space="preserve">OK</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+			</group>
+			<group id="IDP">
+				<group id="OLE">
+					<group id="INIT">
+						<trans-unit id="IDP_OLE_INIT_FAILED" translate="yes" restype="string">
+							<source xml:space="preserve">OLE initialization failed.  Make sure that the OLE libraries are the correct version.</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+			</group>
+			<group id="AFX">
+				<group id="IDS">
+					<group id="APP">
+						<trans-unit id="AFX_IDS_APP_TITLE" translate="yes" restype="string">
+							<source xml:space="preserve">TestMFCApplication</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<trans-unit id="AFX_IDS_IDLEMESSAGE" translate="yes" restype="string">
+						<source xml:space="preserve">Ready</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCSIZE" translate="yes" restype="string">
+						<source xml:space="preserve">Change the window size</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCMOVE" translate="yes" restype="string">
+						<source xml:space="preserve">Change the window position</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCMINIMIZE" translate="yes" restype="string">
+						<source xml:space="preserve">Reduce the window to an icon</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCMAXIMIZE" translate="yes" restype="string">
+						<source xml:space="preserve">Enlarge the window to full size</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCNEXTWINDOW" translate="yes" restype="string">
+						<source xml:space="preserve">Switch to the next document window</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCPREVWINDOW" translate="yes" restype="string">
+						<source xml:space="preserve">Switch to the previous document window</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCCLOSE" translate="yes" restype="string">
+						<source xml:space="preserve">Close the active window and prompts to save the documents</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCRESTORE" translate="yes" restype="string">
+						<source xml:space="preserve">Restore the window to normal size</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_SCTASKLIST" translate="yes" restype="string">
+						<source xml:space="preserve">Activate Task List</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="AFX_IDS_MDICHILD" translate="yes" restype="string">
+						<source xml:space="preserve">Activate this window</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="PREVIEW">
+						<trans-unit id="AFX_IDS_PREVIEW_CLOSE" translate="yes" restype="string">
+							<source xml:space="preserve">Close print preview mode\nCancel Preview</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+			</group>
+			<group id="ID">
+				<group id="INDICATOR">
+					<trans-unit id="ID_INDICATOR_EXT" translate="yes" restype="string">
+						<source xml:space="preserve">EXT</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_INDICATOR_CAPS" translate="yes" restype="string">
+						<source xml:space="preserve">CAP</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_INDICATOR_NUM" translate="yes" restype="string">
+						<source xml:space="preserve">NUM</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_INDICATOR_SCRL" translate="yes" restype="string">
+						<source xml:space="preserve">SCRL</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_INDICATOR_OVR" translate="yes" restype="string">
+						<source xml:space="preserve">OVR</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_INDICATOR_REC" translate="yes" restype="string">
+						<source xml:space="preserve">REC</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="FILE">
+					<trans-unit id="ID_FILE_NEW" translate="yes" restype="string">
+						<source xml:space="preserve">Create a new document\nNew</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_FILE_OPEN" translate="yes" restype="string">
+						<source xml:space="preserve">Open an existing document\nOpen</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_FILE_CLOSE" translate="yes" restype="string">
+						<source xml:space="preserve">Close the active document\nClose</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_FILE_SAVE" translate="yes" restype="string">
+						<source xml:space="preserve">Save the active document\nSave</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="SAVE">
+						<trans-unit id="ID_FILE_SAVE_AS" translate="yes" restype="string">
+							<source xml:space="preserve">Save the active document with a new name\nSave As</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<group id="PAGE">
+						<trans-unit id="ID_FILE_PAGE_SETUP" translate="yes" restype="string">
+							<source xml:space="preserve">Change the printing options\nPage Setup</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<group id="PRINT">
+						<trans-unit id="ID_FILE_PRINT_SETUP" translate="yes" restype="string">
+							<source xml:space="preserve">Change the printer and printing options\nPrint Setup</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT_DIRECT" translate="yes" restype="string">
+							<source xml:space="preserve">Print the active document using current options\nQuick Print</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_PRINT_PREVIEW" translate="yes" restype="string">
+							<source xml:space="preserve">Display full pages\nPrint Preview</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<trans-unit id="ID_FILE_PRINT" translate="yes" restype="string">
+						<source xml:space="preserve">Print the active document\nPrint</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="MRU">
+						<trans-unit id="ID_FILE_MRU_FILE1" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE2" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE3" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE4" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE5" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE6" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE7" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE8" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE9" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE10" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE11" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE12" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE13" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE14" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE15" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_FILE_MRU_FILE16" translate="yes" restype="string">
+							<source xml:space="preserve">Open this document</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+				<group id="APP">
+					<trans-unit id="ID_APP_ABOUT" translate="yes" restype="string">
+						<source xml:space="preserve">Display program information, version number and copyright\nAbout</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_APP_EXIT" translate="yes" restype="string">
+						<source xml:space="preserve">Quit the application; prompts to save documents\nExit</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="NEXT">
+					<trans-unit id="ID_NEXT_PANE" translate="yes" restype="string">
+						<source xml:space="preserve">Switch to the next window pane\nNext Pane</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="PREV">
+					<trans-unit id="ID_PREV_PANE" translate="yes" restype="string">
+						<source xml:space="preserve">Switch back to the previous window pane\nPrevious Pane</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="WINDOW">
+					<trans-unit id="ID_WINDOW_NEW" translate="yes" restype="string">
+						<source xml:space="preserve">Open another window for the active document\nNew Window</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_WINDOW_ARRANGE" translate="yes" restype="string">
+						<source xml:space="preserve">Arrange icons at the bottom of the window\nArrange Icons</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_WINDOW_CASCADE" translate="yes" restype="string">
+						<source xml:space="preserve">Arrange windows so they overlap\nCascade Windows</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="TILE">
+						<trans-unit id="ID_WINDOW_TILE_HORZ" translate="yes" restype="string">
+							<source xml:space="preserve">Arrange windows as non-overlapping tiles\nTile Windows</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+						<trans-unit id="ID_WINDOW_TILE_VERT" translate="yes" restype="string">
+							<source xml:space="preserve">Arrange windows as non-overlapping tiles\nTile Windows</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<trans-unit id="ID_WINDOW_SPLIT" translate="yes" restype="string">
+						<source xml:space="preserve">Split the active window into panes\nSplit</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_WINDOW_MANAGER" translate="yes" restype="string">
+						<source xml:space="preserve">&amp;Windows...</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="EDIT">
+					<trans-unit id="ID_EDIT_CLEAR" translate="yes" restype="string">
+						<source xml:space="preserve">Erase the selection\nErase</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="CLEAR">
+						<trans-unit id="ID_EDIT_CLEAR_ALL" translate="yes" restype="string">
+							<source xml:space="preserve">Erase everything\nErase All</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<trans-unit id="ID_EDIT_COPY" translate="yes" restype="string">
+						<source xml:space="preserve">Copy the selection and put it on the Clipboard\nCopy</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_CUT" translate="yes" restype="string">
+						<source xml:space="preserve">Cut the selection and put it on the Clipboard\nCut</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_FIND" translate="yes" restype="string">
+						<source xml:space="preserve">Find the specified text\nFind</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_PASTE" translate="yes" restype="string">
+						<source xml:space="preserve">Insert Clipboard contents\nPaste</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_REPEAT" translate="yes" restype="string">
+						<source xml:space="preserve">Repeat the last action\nRepeat</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_REPLACE" translate="yes" restype="string">
+						<source xml:space="preserve">Replace specific text with different text\nReplace</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<group id="SELECT">
+						<trans-unit id="ID_EDIT_SELECT_ALL" translate="yes" restype="string">
+							<source xml:space="preserve">Select the entire document\nSelect All</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+					<trans-unit id="ID_EDIT_UNDO" translate="yes" restype="string">
+						<source xml:space="preserve">Undo the last action\nUndo</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="ID_EDIT_REDO" translate="yes" restype="string">
+						<source xml:space="preserve">Redo the previously undone action\nRedo</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="VIEW">
+					<group id="STATUS">
+						<trans-unit id="ID_VIEW_STATUS_BAR" translate="yes" restype="string">
+							<source xml:space="preserve">Show or hide the status bar\nToggle Status Bar</source>
+							<target xml:space="preserve" state="new"></target>
+						</trans-unit>
+					</group>
+				</group>
+			</group>
+			<group id="IDS">
+				<group id="STATUS">
+					<trans-unit id="IDS_STATUS_PANE1" translate="yes" restype="string">
+						<source xml:space="preserve">Pane 1</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="IDS_STATUS_PANE2" translate="yes" restype="string">
+						<source xml:space="preserve">Pane 2</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="TOOLBAR">
+					<trans-unit id="IDS_TOOLBAR_STANDARD" translate="yes" restype="string">
+						<source xml:space="preserve">Standard</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+					<trans-unit id="IDS_TOOLBAR_CUSTOMIZE" translate="yes" restype="string">
+						<source xml:space="preserve">Customize...</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="FILE">
+					<trans-unit id="IDS_FILE_VIEW" translate="yes" restype="string">
+						<source xml:space="preserve">File View</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="CLASS">
+					<trans-unit id="IDS_CLASS_VIEW" translate="yes" restype="string">
+						<source xml:space="preserve">Class View</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<trans-unit id="IDS_EXPLORER" translate="yes" restype="string">
+					<source xml:space="preserve">Explorer</source>
+					<target xml:space="preserve" state="new"></target>
+				</trans-unit>
+				<group id="OUTPUT">
+					<trans-unit id="IDS_OUTPUT_WND" translate="yes" restype="string">
+						<source xml:space="preserve">Output</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="BUILD">
+					<trans-unit id="IDS_BUILD_TAB" translate="yes" restype="string">
+						<source xml:space="preserve">Build</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="DEBUG">
+					<trans-unit id="IDS_DEBUG_TAB" translate="yes" restype="string">
+						<source xml:space="preserve">Debug</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="FIND">
+					<trans-unit id="IDS_FIND_TAB" translate="yes" restype="string">
+						<source xml:space="preserve">Find</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="PROPERTIES">
+					<trans-unit id="IDS_PROPERTIES_WND" translate="yes" restype="string">
+						<source xml:space="preserve">Properties</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+				<group id="EDIT">
+					<trans-unit id="IDS_EDIT_MENU" translate="yes" restype="string">
+						<source xml:space="preserve">Edit</source>
+						<target xml:space="preserve" state="new"></target>
+					</trans-unit>
+				</group>
+			</group>
+		</body>
+	</file>
+</xliff>

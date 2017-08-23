@@ -1,0 +1,24 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+		x:Class="TestWpfApplication.MainWindow"
+		Title="MainWindow"
+		Height="350"
+		Width="525">
+	<Grid>
+		<ContentControl x:Uid="ContentControl">ContentControl Test 1</ContentControl>
+		<TextBlock x:Uid="TextBlock1" Localization.Comments="$Content(Comment for TextBlock)">TextBlock Test 1</TextBlock>
+		<TextBlock x:Uid="TextBlock2">TextBlock Test 2</TextBlock>
+
+		<dxg:GridControl AutoGenerateColumns="AddNew"
+						 EnableSmartColumnsGeneration="True">
+			<dxg:GridControl.Columns>
+				<dxg:GridColumn Header="Test Column1" x:Uid="Grid.dxg:GridControl.dxg:GridControl.Columns" />
+			</dxg:GridControl.Columns>
+			<dxg:GridControl.View>
+				<dxg:TableView ShowTotalSummary="True" x:Uid="Grid.dxg:GridControl.dxg:GridControl.Columns1" />
+			</dxg:GridControl.View>
+		</dxg:GridControl>
+		
+	</Grid>
+</Window>

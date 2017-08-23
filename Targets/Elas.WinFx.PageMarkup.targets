@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<UsingTask TaskName="ElasGetCulturedPageMarkup" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	<UsingTask TaskName="ElasResourcesGeneratorPageMarkup" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	<UsingTask TaskName="ElasBindPageMarkupWithGeneratedBaml" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	<UsingTask TaskName="ElasExportToIntermediateDocumentPageMarkup" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+	<UsingTask TaskName="ElasImportFromIntermediateDocumentPageMarkup" AssemblyFile="$(ElasTasksWinFxAssembly)" />
+
+	<ItemDefinitionGroup>
+		<ElasPageMarkup>
+			<ElasSourceLanguage>$(DefaultLanguage)</ElasSourceLanguage>
+		</ElasPageMarkup>
+	</ItemDefinitionGroup>
+
+	<PropertyGroup>
+		<UICulture/>
+	</PropertyGroup>
+
+	<Target Name="ElasAssignIntermediateDocumentPathsPageMarkup">
+		<ItemGroup>
+			<_Temporary Remove="@(_Temporary)" />
+		</ItemGroup>
+
+		<ElasBindPageMarkupWithGeneratedBaml PageMarkup="@(Page)"
+											 GeneratedBaml="@(GeneratedBaml);@(GeneratedBamlWithLocalType)"
+											 IntermediateOutputPath="$(IntermediateOutputPath)">
+			<Output ItemName="_Temporary"
+					TaskParameter="OutputPageMarkup" />
+		</ElasBindPageMarkupWithGeneratedBaml>
+
+		<ElasAssignIntermediateDocumentPath Files="@(_Temporary)"
+											RootFolder="$(MSBuildProjectDirectory)"
+											Condition="'%(_Temporary.ElasGeneratedBaml)' != ''">
+			<Output ItemName="ElasPageMarkup"
+					TaskParameter="AssignedFiles" />
+		</ElasAssignIntermediateDocumentPath>
+
+		<ItemGroup>
+			<_Temporary Remove="@(_Temporary)" />
+		</ItemGroup>
+
+		<ItemGroup>
+			<ElasIntermediateDocumentPathPageMarkup Include="%(ElasPageMarkup.ElasIntermediateDocumentPath)"/>
+		</ItemGroup>
+	</Target>
+
+	<Target Name="ElasIncludeCulturedPageMarkup"
+			DependsOnTargets="ElasAssignIntermediateDocumentPathsPageMarkup">
+
+		<ElasGetCulturedPageMarkup PageMarkup="@(ElasPageMarkup)"
+								   TargetCultures="@(ElasTargetCultures)" >
+			<Output TaskParameter="OutputFiles" ItemName="FileWrites" />
+			<Output TaskParameter="OutputFiles" ItemName="ElasSatelliteEmbeddedFiles" />
+		</ElasGetCulturedPageMarkup>
+	</Target>
+
+	<Target Name="ElasExportToIntermediateDocumentPageMarkup"
+			Inputs="$(ElasConfigurationPath);@(ElasPageMarkup)"
+			Outputs="@(ElasPageMarkup->'%(ElasIntermediateDocumentPath)')"
+			DependsOnTargets="ElasAssignIntermediateDocumentPathsPageMarkup">
+
+		<ElasExportToIntermediateDocumentPageMarkup PageMarkup="@(ElasPageMarkup)"
+													TargetCultures="@(ElasTargetCultures)"
+													ConfigurationPath="$(ElasConfigurationPath)"
+													References="@(IntermediateAssembly);@(ReferencePath)" 
+													LocalizabilityDefinitions="@(ElasPageMarkupLocalizability)" />
+
+	</Target>
+
+	<Target Name="ElasPretranslatePageMarkup"
+			Outputs="@(ElasSatelliteEmbeddedFiles)"
+			Inputs="@(ElasIntermediateDocumentPathPageMarkup)"
+			AfterTargets="ElasExportToIntermediateDocumentPageMarkup">
+
+		<ElasPretranslate ConfigurationPath="$(ElasConfigurationPath)"
+						  Files="@(ElasIntermediateDocumentPathPageMarkup)" />
+
+	</Target>
+
+	<Target Name="ElasValidateIntermediateDocumentPageMarkup"
+			BeforeTargets="ElasImportFromIntermediateDocumentPageMarkup">
+
+		<ElasValidateIntermediateDocument TargetCultures="@(ElasTargetCultures)"
+										  TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+										  Files="@(ElasIntermediateDocumentPathPageMarkup)" />
+
+	</Target>
+
+	<Target Name="ElasImportFromIntermediateDocumentPageMarkup"
+			Outputs="@(ElasSatelliteEmbeddedFiles)"
+			Inputs="@(ElasIntermediateDocumentPathPageMarkup)"
+			DependsOnTargets="ElasIncludeCulturedPageMarkup;ElasExportToIntermediateDocumentPageMarkup">
+
+		<ElasImportFromIntermediateDocumentPageMarkup SatelliteBaml="@(ElasSatelliteEmbeddedFiles)"
+													  References="@(IntermediateAssembly);@(ReferencePath)" 
+													  LocalizabilityDefinitions="@(ElasPageMarkupLocalizability)" />
+
+	</Target>
+
+	<Target Name="ElasGetResourceFilesPageMarkup"
+			Condition="'@(ElasSatelliteEmbeddedFiles)' != ''" >
+		<ItemGroup>
+			<ElasResourceFilesPageMarkup Include="$(IntermediateOutputPath)$(AssemblyName).g.%(ElasSatelliteEmbeddedFiles.Culture).resources">
+				<Culture>%(ElasSatelliteEmbeddedFiles.Culture)</Culture>
+			</ElasResourceFilesPageMarkup>
+		</ItemGroup>
+
+		<ItemGroup>
+			<FileWrites Include="@(ElasResourceFilesPageMarkup)"/>
+		</ItemGroup>
+	</Target>
+
+	<Target Name="ElasSatelliteResourceGeneration"
+			Inputs="@(ElasSatelliteEmbeddedFiles)"
+			Outputs="@(ElasResourceFilesPageMarkup)"
+			DependsOnTargets="ElasImportFromIntermediateDocumentPageMarkup;ElasGetResourceFilesPageMarkup" >
+
+		<ElasResourcesGeneratorPageMarkup AssemblyName="$(AssemblyName)"
+										  OutputPath="$(IntermediateOutputPath)"
+										  ResourceFiles="@(ElasSatelliteEmbeddedFiles)" >
+		</ElasResourcesGeneratorPageMarkup>
+
+		<ItemGroup>
+			<_SatelliteResourceFile Include="$(IntermediateOutputPath)$(AssemblyName).g.%(ElasSatelliteEmbeddedFiles.Culture).resources"/>
+		</ItemGroup>
+	</Target>
+
+	<Target Name="ElasGenerateResourceWithCultureItem"
+			DependsOnTargets="ElasSatelliteResourceGeneration"
+			AfterTargets="PrepareResourcesForSatelliteAssemblies" >
+		<ItemGroup>
+			<EmbeddedResource Include="@(ElasResourceFilesPageMarkup)">
+				<GenerateResource>false</GenerateResource>
+				<Type>Resx</Type>
+				<WithCulture>true</WithCulture>
+				<OutputResource>%(Identity)</OutputResource>
+			</EmbeddedResource>
+		</ItemGroup>
+	</Target>
+
+</Project>

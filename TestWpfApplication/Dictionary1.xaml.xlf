@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns:elas="urn:devutils:names:tc:xliff:document:1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="Dictionary1.xaml" source-language="en-US" target-language="ru-RU" datatype="xml">
+		<header>
+			<tool tool-version="0.0.8.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=0.0.8.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" date="2015-04-07T09:12:58.5312299Z" />
+		</header>
+		<body />
+	</file>
+	<file original="Dictionary1.xaml" source-language="en-US" target-language="de-DE" datatype="xml">
+		<header>
+			<tool tool-version="0.0.8.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=0.0.8.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" date="2015-04-07T09:12:58.5342297Z" />
+		</header>
+		<body />
+	</file>
+</xliff>

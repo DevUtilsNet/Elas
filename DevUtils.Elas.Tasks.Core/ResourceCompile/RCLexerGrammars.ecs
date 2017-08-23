@@ -1,0 +1,154 @@
+﻿using System.Collections.Generic;
+using DevUtils.Elas.Tasks.Core.Loyc;
+
+namespace DevUtils.Elas.Tasks.Core.ResourceCompile
+{
+	using TT = RCTokenType;
+
+	sealed partial class RCLexer
+	{
+		LLLPG (lexer)
+		{
+			private new extern token Newline @[ 
+				('\r' '\n'? | '\n') // inherited from BaseLexer
+				];
+
+			private token Space @[ 
+				(' '|'\t'|'\v') 
+			];
+
+			private token Spaces @[ 
+				{ BeginToken(); } Space+ { EndToken(TT.SpacesOrComments); }
+			];
+
+			private token SLComment @[ 
+				{ BeginToken(); } "//" (~('\r'|'\n'))* { EndToken(TT.SpacesOrComments); }
+			];
+
+			[k(3)]
+			private token MLComment @[ 
+				{ BeginToken(); } "/*" nongreedy(MLComment / Newline / _)* "*/" { EndToken(TT.SpacesOrComments); }
+			];
+
+			private token Comment @[
+				MLComment / SLComment
+			];
+
+			private token DQString @[
+			   { BeginToken(); var rs = false; } '"' ('\\' _ | ("\"\"" {rs = true;}) | ~('"'|'\\'|'\n'|'\r'))* '"' { EndToken(rs ? TT.RString : TT.String); }
+				 ];
+
+			/*private token DAString @[
+			   '<' { BeginToken(); } ('\\' _ | ~('>'|'\\'|'\n'|'\r'))* { EndToken(TT.String); } '>'
+				 ];*/
+
+			private token Digit @[
+				'0'..'9'
+			];
+
+			private token Digits @[
+				Digit+
+			];
+
+			private token Hexs @[
+				'0' ('x'|'X') (Digit | 'a'..'f' | 'A'..'F')+
+			];
+
+			private token IdLetter @[
+				'a'..'z'|'A'..'Z'|'_'
+			];
+
+			private token Number @[
+				{BeginToken();} (Hexs/Digits) {EndToken(TT.Number);}
+			];
+
+			private token Keyword @[
+				{BeginToken();} IdLetter (IdLetter|Digit)* {EndToken(TT.Keyword);}
+			];
+
+			/*private token RestOfPPLine @[
+				(greedy(('\\' (MLComment | Spaces)* Newline ) | DQString / DAString / ~('\n'|'\r'|'/'|'\\'))*
+				)
+			];*/
+
+			private token PPDirective @[
+				'a'..'z'+
+			];
+
+			private token PreProcess @[ 
+				{BeginToken();} '#' PPDirective { var dt = TT.Preprocessor/*ParsePPDirective()*/; } /*{if(dt != TT.PreprocessorInclude) RestOfPPLine();}*/ {EndToken(dt);}
+			];
+
+			private token Other @[
+				{ BeginToken(); } ~('\t'|'\v'|'\n'|'\r'|' ')+ { EndToken(TT.RawKeyword); }
+			];
+
+			private token Token1() @[
+				( { BeginToken(); } Newline   { EndToken(TT.Newline); }
+				|                   Spaces
+				// |                   SLComment
+				// /                   MLComment
+				|                   Comment
+				/                   Other
+				)
+			];
+
+			[k(3)]
+			private token Token2() @[
+				( { BeginToken(); } Newline    { EndToken(TT.Newline); }
+				|                   Spaces
+				|                   DQString
+				|                   Number
+				|                   Keyword
+				| { BeginToken(); } ','        { EndToken(TT.Comma); }
+				| { BeginToken(); } '['        { EndToken(TT.LBrack); }
+				| { BeginToken(); } ']'        { EndToken(TT.RBrack); }
+				| { BeginToken(); } '('        { EndToken(TT.LParen); }
+				| { BeginToken(); } ')'        { EndToken(TT.RParen); }
+				| { BeginToken(); } '{'        { EndToken(TT.LBrace); }
+				| { BeginToken(); } '}'        { EndToken(TT.RBrace); }
+				| { BeginToken(); } ';'        { EndToken(TT.Semicolon); }
+				| { BeginToken(); } '\''       { EndToken(TT.Apostrophe); }
+				| { BeginToken(); } '\\'       { EndToken(TT.ReverseSolidus); }
+				| { BeginToken(); } '.'        { EndToken(TT.Dot); }
+				| { BeginToken(); } ':'        { EndToken(TT.Colon); }
+				| { BeginToken(); } "||"       { EndToken(TT.Or); }
+				/ { BeginToken(); } '|'        { EndToken(TT.OrBits); }
+				| { BeginToken(); } "&&"       { EndToken(TT.And); }
+				/ { BeginToken(); } '&'        { EndToken(TT.AndBits); }
+				| { BeginToken(); } '^'        { EndToken(TT.XorBits); }
+				| { BeginToken(); } "!="       { EndToken(TT.UnEqual); }
+				/ { BeginToken(); } '!'        { EndToken(TT.Not); }
+				| { BeginToken(); } "=="       { EndToken(TT.Equal); }
+				/ { BeginToken(); } '='        { EndToken(TT.Assign); }
+				| { BeginToken(); } ">="       { EndToken(TT.GreaterThanEqual); }
+				/ { BeginToken(); } ">>"       { EndToken(TT.ShiftRight); }
+				/ { BeginToken(); } ">"        { EndToken(TT.GreaterThan); }
+				| { BeginToken(); } "<="       { EndToken(TT.LessThanEqual); }
+				/ { BeginToken(); } "<<"       { EndToken(TT.ShiftLeft); }
+				// |                   DAString
+				/ { BeginToken(); } '<'        { EndToken(TT.LessThan); }
+				| { BeginToken(); } '*'        { EndToken(TT.Mul); }
+				// |                   MLComment
+				// /                   SLComment
+				|                      Comment
+				/ { BeginToken(); } '/'        { EndToken(TT.Div); }
+				| { BeginToken(); } '%'        { EndToken(TT.Mod); }
+				| { BeginToken(); } "++"       { EndToken(TT.Inc); }
+				/ { BeginToken(); } '+'        { EndToken(TT.Plus); }
+				| { BeginToken(); } "--"       { EndToken(TT.Dec); }
+				/ { BeginToken(); } '-'        { EndToken(TT.Minus); }
+				| { BeginToken(); } '~'        { EndToken(TT.NotBits); }
+				)
+			];
+
+			partial token Token()@[
+				( &{!IgnorePP}       PreProcess
+				| &{RawToken}       Token1
+				| &{!RawToken}      Token2
+				| { BeginToken(); } -1        { EndToken(TT.EOF); }
+				)
+			];
+		}
+	}
+}

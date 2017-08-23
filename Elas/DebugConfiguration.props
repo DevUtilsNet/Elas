@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<ItemGroup>
+		<ElasTargetCultures Include="ru-RU" />
+		<ElasTargetCultures Include="de-DE" />
+		<!-- <ElasTargetCultures Include="mn-MN" /> -->
+	</ItemGroup>
+
+	<PropertyGroup>
+		<DefaultLanguage Condition="'$(DefaultLanguage)' == ''">en-US</DefaultLanguage>
+		<ElasBinPath>$(MSBuildThisFileDirectory)..\Debug\</ElasBinPath>
+		<ElasPretranslateMicrosoftTranslationAssembly>$(ElasBinPath)DevUtils.Elas.Pretranslate.MicrosoftTranslation.dll</ElasPretranslateMicrosoftTranslationAssembly>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ElasMicrosoftTranslationClientId>MAT</ElasMicrosoftTranslationClientId>
+		<ElasMicrosoftTranslationClientSecret>6HjJjd0EQxJfnbIYArH090TrFtW7IW5GUVFL6VtWNJQ=</ElasMicrosoftTranslationClientSecret>
+		<ElasConfigurationPath Condition="'$(ElasConfigurationPath)'==''">$(MSBuildThisFileFullPath)</ElasConfigurationPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ElasPageMarkupLocalizability Include="System.Windows.FontStyle">
+			<Modifiability>Unmodifiable</Modifiability>
+		</ElasPageMarkupLocalizability>
+		<ElasPageMarkupLocalizability Include="System.Windows.FontWeight">
+			<Modifiability>Unmodifiable</Modifiability>
+		</ElasPageMarkupLocalizability>
+		<ElasPageMarkupLocalizability Include="System.Windows.Controls.Control.FontSize">
+			<Modifiability>Unmodifiable</Modifiability>
+		</ElasPageMarkupLocalizability>
+		<ElasPageMarkupLocalizability Include="System.Windows.Controls.TextBlock.FontSize">
+			<Modifiability>Unmodifiable</Modifiability>
+		</ElasPageMarkupLocalizability>
+		<ElasPageMarkupLocalizability Include="DevExpress.Xpf.Editors.LookUpEditBase.ValueMember">
+			<Modifiability>Unmodifiable</Modifiability>
+		</ElasPageMarkupLocalizability>
+		<ElasPageMarkupLocalizability Include="DevExpress.Xpf.Editors.LookUpEditBase.DisplayMember">
+			<Modifiability>Unmodifiable</Modifiability>
+		</ElasPageMarkupLocalizability>
+		<ElasPageMarkupLocalizability Include="DevExpress.Xpf.Editors.ButtonEdit.AllowDefaultButton">
+			<Modifiability>Unmodifiable</Modifiability>
+		</ElasPageMarkupLocalizability>
+	</ItemGroup>
+</Project> 

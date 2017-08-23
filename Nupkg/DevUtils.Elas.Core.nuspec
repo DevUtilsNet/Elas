@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata minClientVersion="2.8.1">
+		<frameworkAssemblies>
+		</frameworkAssemblies>
+		<id>DevUtils.Elas.Core</id>
+		<authors>DevUtils</authors>
+		<version>1.0.11</version>
+		<title>DevUtils ELAS Core</title>
+		<copyright>Copyright © 2016 DevUtils</copyright>
+		<tags>ELAS Localization Culture Languages XLIFF</tags>
+		<projectUrl>https://github.com/DevUtilsNet/Elas</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<summary>DevUtils ELAS Core helps create simpler translation workflows.</summary>
+		<description>
+			DevUtils ELAS Core helps create simpler translation workflows.
+			Add and manage translation files within a project solution.
+			Translations are stored in the localization industry standard XLIFF file format, and you can edit them just like any other language translation.
+			This gives you granular control over translation.
+			Send and receive resources via XLIFF files.
+			Use to easily edit translated strings.
+			You can also quickly edit data stored in XLIFF files by adjusting pseudo and actual translations.
+			DevUtils.Elas.Core is the core framework assembly for ELAS that the rest of ELAS builds upon.</description>
+		<releaseNotes>
+			Handle "TreatWarningsAsErrors" property
+		</releaseNotes>
+	</metadata>
+	<files>
+		<file src="Tools\Init.ps1" target="tools\"/>
+
+		<file src="Content\Elas.txt" target="content\" />
+
+		<file src="Tools\Elas\ElasConfiguration.props" target="tools\elas\" />
+
+		<!--wpa-->
+		<file src="..\Targets\Elas.targets" target="build\wpa\Elas.targets" />
+		<file src="..\Targets\Elas.Appx.targets" target="build\wpa\DevUtils.Elas.Core.targets" />
+		<file src="..\Targets\Elas.Appx.PRIResource.targets" target="build\wpa\Elas.Appx.PRIResource.targets" />
+
+		<!--windows8-->
+		<file src="..\Targets\Elas.targets" target="build\windows8\Elas.targets" />
+		<file src="..\Targets\Elas.Appx.targets" target="build\windows8\DevUtils.Elas.Core.targets" />
+		<file src="..\Targets\Elas.Appx.PRIResource.targets" target="build\windows8\Elas.Appx.PRIResource.targets" />
+
+		<!--net20-->
+		<file src="..\Targets\Elas.targets" target="build\net20\Elas.targets" />
+		<file src="..\Targets\Elas.WinFx.targets" target="build\net20\DevUtils.Elas.Core.targets" />
+		<file src="..\Targets\Elas.WinFx.PageMarkup.targets" target="build\net20\Elas.WinFx.PageMarkup.targets" />
+		<file src="..\Targets\Elas.WinFx.EmbeddedResource.targets" target="build\net20\Elas.WinFx.EmbeddedResource.targets" />
+
+		<!--sl40-->
+		<file src="..\Targets\Elas.targets" target="build\sl40\Elas.targets" />
+		<file src="..\Targets\Elas.WinFx(Sl).targets" target="build\sl40\DevUtils.Elas.Core.targets" />
+		<file src="..\Targets\Elas.WinFx.EmbeddedResource.targets" target="build\sl40\Elas.WinFx.EmbeddedResource.targets" />
+
+		<!--native-->
+		<file src="..\Targets\Elas.targets" target="build\native\Elas.targets" />
+		<file src="..\Targets\Elas.Cpp.targets" target="build\native\DevUtils.Elas.Core.targets" />
+		<file src="..\Targets\Elas.Cpp.ResourceCompile.targets" target="build\native\Elas.Cpp.ResourceCompile.targets" />
+
+		<file src="..\Release\DevUtils.Elas.Tasks.Core.dll" target="build\DevUtils.Elas.Tasks.Core.dll" />
+		<file src="..\Release\DevUtils.Elas.Tasks.Core.xml" target="build\DevUtils.Elas.Tasks.Core.xml" />
+
+		<file src="Schemas\xliff-core-1.2-transitional.xsd" target="schemas\xliff-core-1.2-transitional.xsd" />
+	</files>
+</package>

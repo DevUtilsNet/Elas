@@ -1,0 +1,193 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<!--<ElasTasksWixPath Condition=" '$(ElasTasksWixPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Congree\Bal\V1.0\Congree.Bal.Across.Build.Tasks.dll</ElasTasksWixPath>
+		<ElasTasksWixPath Condition=" '$(ElasTasksWixPath)' == '' ">$(MSBuildExtensionsPath)\Congree\Bal\V1.0\Congree.Bal.Across.Build.Tasks.dll</ElasTasksWixPath>-->
+		<ElasTasksWixPath Condition=" '$(ElasTasksWixPath)' == '' ">..\Elas.Tasks.Wix\bin\Debug\Elas.Tasks.Wix.dll</ElasTasksWixPath>
+	</PropertyGroup>
+	
+	<UsingTask TaskName="ElasWixExtractResx" AssemblyFile="$(ElasTasksWixPath)" />
+	<UsingTask TaskName="ElasWixUpdateByResx" AssemblyFile="$(ElasTasksWixPath)" />
+
+	<Import Project="Elas.Common.targets"/>
+
+	<Target Name="_ElasWixGetInputs">
+		<ItemGroup>
+			<ElasWixInputs Remove="@(ElasWixInputs)" />
+
+			<_Temporary Remove="@(_Temporary)" />
+			<_Temporary Include="@(EmbeddedResource)" >
+				<TargetPath>%(Identity)</TargetPath>
+			</_Temporary>
+		</ItemGroup>
+
+		<ElasGetInputs 
+			SourceFiles="@(_Temporary)" 
+			OutputPath="$(IntermediateOutputPath)">
+			<Output 
+				TaskParameter="InputFiles" 
+				ItemName="ElasWixInputs" />
+		</ElasGetInputs>
+
+		<ItemGroup>
+			<FileWrites Include="@(ElasWixInputs)" />
+			<_Temporary Remove="@(_Temporary)" />
+		</ItemGroup>
+	</Target>
+
+	<Target 
+		Name="_ElasWixResxGetInputs" 
+		DependsOnTargets="_ElasWixGetInputs">
+		<ItemGroup>
+			<ElasWixResxInputs Include="%(ElasWixInputs.Identity).resx" >
+				<TargetPath>%(ElasWixInputs.TargetPath)</TargetPath>
+			</ElasWixResxInputs>
+			<FileWrites Include="@(ElasWixResxInputs)" />
+		</ItemGroup>
+	</Target>
+
+	<Target 
+		Name="_ElasWixCopyInputs" 
+		Inputs="@(ElasWixInputs->'%(SourcePath)')" 
+		Outputs="@(ElasWixInputs)" 
+		DependsOnTargets="_ElasWixGetInputs">
+
+		<Copy 
+			SourceFiles="@(ElasWixInputs->'%(SourcePath)')" 
+			DestinationFiles="@(ElasWixInputs)" />
+
+		<Touch 
+			Files="@(ElasWixInputs)" 
+			ForceTouch="True"/>
+	</Target>
+
+	<Target 
+		Name="_ElasWixExtractResx" 
+		Inputs="@(ElasWixInputs)" 
+		Outputs="@(ElasWixResxInputs)" 
+		DependsOnTargets="_ElasWixCopyInputs;_ElasWixResxGetInputs">
+
+		<ElasWixExtractResx 
+			Sources="@(ElasWixInputs)" 
+			Targets="@(ElasWixResxInputs)" />
+
+	</Target>
+
+	<Target 
+		Name="_ElasWixResxGetOutputs" 
+		DependsOnTargets="_ElasWixResxGetInputs" 
+		Condition="'@(ElasTargetCultures)' != ''">
+		<ItemGroup>
+			<ElasWixResxOutputs Remove="@(ElasWixResxOutputs)" />
+			<_Temporary Remove="@(_Temporary)" />
+
+			<_Temporary Include="@(ElasWixResxInputs)" >
+				<Culture>%(ElasTargetCultures.Identity)</Culture>
+			</_Temporary>
+
+			<ElasWixResxOutputs Include="%(_Temporary.RelativeDir)%(Filename).%(Culture)%(Extension)">
+				<Culture>%(Culture)</Culture>
+				<SourcePath>%(Identity)</SourcePath>
+				<TargetPath>%(TargetPath)</TargetPath>
+			</ElasWixResxOutputs>
+			<FileWrites Include="@(ElasWixResxOutputs)" />
+			<_Temporary Remove="@(_Temporary)" />
+		</ItemGroup>
+	</Target>
+
+	<Target 
+		Name="_ElasWixResxLocalize" 
+		Inputs="@(ElasWixResxInputs)" 
+		Outputs="@(ElasWixResxOutputs)" 
+		DependsOnTargets="_ElasWixExtractResx;_ElasWixResxGetOutputs"
+		Condition="'@(ElasTargetCultures)' != ''">
+
+		<CallTarget Targets="_ElasWixResxLocalizeSetParams" />
+
+		<CallTarget Targets="_ElasResxLocalizeExecute" />
+
+	</Target>
+
+	<Target Name="_ElasWixResxLocalizeSetParams">
+		<ItemGroup>
+			<ElasResxTargets Remove="@(ElasResxTargets)" />
+			<ElasResxTargets Include="@(ElasWixResxOutputs)" />
+		</ItemGroup>
+	</Target>
+
+	<Target 
+		Name="_ElasWixGetOutputs" 
+		DependsOnTargets="_ElasWixResxGetOutputs"
+		Condition="'@(ElasTargetCultures)' != ''">
+		<ItemGroup>
+			<_Temporary Remove="@(_Temporary)" />
+			<_Temporary2 Remove="@(_Temporary2)" />
+			<ElasWixOutputs Remove="@(ElasWixOutputs)" />
+
+			<_Temporary Include="%(ElasWixResxOutputs.RelativeDir)%(Filename)">
+				<Culture>%(Culture)</Culture>
+				<TargetPath>%(TargetPath)</TargetPath>
+				<ResxFilePath>%(Identity)</ResxFilePath>
+			</_Temporary>
+
+			<_Temporary2 Include="%(_Temporary.RelativeDir)%(Filename)">
+				<Culture>%(Culture)</Culture>
+				<TargetPath>%(TargetPath)</TargetPath>
+				<ResxFilePath>%(ResxFilePath)</ResxFilePath>
+			</_Temporary2>
+
+			<ElasWixOutputs Include="%(_Temporary2.RelativeDir)%(Filename).%(Culture)%(Extension)">
+				<Culture>%(Culture)</Culture>
+				<TargetPath>%(TargetPath)</TargetPath>
+				<ResxFilePath>%(ResxFilePath)</ResxFilePath>
+			</ElasWixOutputs>
+
+			<FileWrites Include="@(ElasWixOutputs)" />
+			<_Temporary Remove="@(_Temporary)" />
+			<_Temporary2 Remove="@(_Temporary2)" />
+		</ItemGroup>
+	</Target>
+
+	<Target 
+		Name="_ElasWixUpdate" 
+		Inputs="@(ElasWixResxOutputs)" 
+		Outputs="@(ElasWixOutputs)" 
+		DependsOnTargets="_ElasWixResxLocalize;_ElasWixGetOutputs"
+		Condition="'@(ElasTargetCultures)' != ''">
+
+		<ItemGroup>
+			<_Temporary Remove="@(_Temporary)" />
+			<_Temporary1 Remove="@(_Temporary1)" />
+			<_Temporary2 Remove="@(_Temporary2)" />
+
+			<_Temporary Include="%(ElasWixOutputs.TargetPath)">
+				<_Temporary>%(ElasWixOutputs.Identity)</_Temporary>
+			</_Temporary>
+			<_Temporary1 Include="%(ElasWixOutputs.ResxFilePath)">
+				<Culture>%(Culture)</Culture>
+			</_Temporary1>
+			<_Temporary2 Include="@(ElasWixOutputs)" />
+		</ItemGroup>
+
+		<ElasWixUpdateByResx
+			Sources="@(_Temporary)"
+			ResxFiles="@(_Temporary1)"
+			Targets="@(_Temporary2)" />
+
+		<ItemGroup>
+			<_Temporary Remove="@(_Temporary)" />
+			<_Temporary1 Remove="@(_Temporary1)" />
+			<_Temporary2 Remove="@(_Temporary2)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="ElasWixLocalize"
+			DependsOnTargets="_ElasWixUpdate;_ElasWixGetOutputs"
+			Condition="'@(ElasTargetCultures)' != ''"
+			BeforeTargets="Build" >
+		<ItemGroup>
+			<EmbeddedResource Include="@(ElasWixOutputs)" />
+		</ItemGroup>
+	</Target>
+
+</Project>

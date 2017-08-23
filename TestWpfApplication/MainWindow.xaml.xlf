@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns:elas="urn:devutils:names:tc:xliff:document:1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="MainWindow.xaml" source-language="en-US" target-language="ru-RU" datatype="xml">
+		<header>
+			<tool tool-version="1.0.10.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=1.0.10.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" />
+		</header>
+		<body>
+			<group id="TextBlock1">
+				<trans-unit id="TextBlock1.$Content" translate="yes">
+					<source xml:space="preserve">TextBlock Test 1</source>
+					<target xml:space="preserve" state="needs-review-translation">TextBlock тест 1</target>
+					<note>Comment for TextBlock</note>
+				</trans-unit>
+			</group>
+			<group id="TextBlock2">
+				<trans-unit id="TextBlock2.$Content" translate="yes">
+					<source xml:space="preserve">TextBlock Test 2</source>
+					<target xml:space="preserve" state="needs-review-translation">TextBlock тест 2</target>
+				</trans-unit>
+			</group>
+			<group id="Grid">
+				<group id="dxg:GridControl">
+					<group id="dxg:GridControl">
+						<group id="Columns">
+							<trans-unit id="Grid.dxg:GridControl.dxg:GridControl.Columns.Header" translate="yes">
+								<source xml:space="preserve">Test Column1</source>
+								<target xml:space="preserve" state="needs-review-translation">Столбец1 тест</target>
+							</trans-unit>
+						</group>
+					</group>
+				</group>
+			</group>
+		</body>
+	</file>
+	<file original="MainWindow.xaml" source-language="en-US" target-language="de-DE" datatype="xml">
+		<header>
+			<tool tool-version="1.0.10.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=1.0.10.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" />
+		</header>
+		<body>
+			<group id="TextBlock1">
+				<trans-unit id="TextBlock1.$Content" translate="yes">
+					<source xml:space="preserve">TextBlock Test 1</source>
+					<target xml:space="preserve" state="needs-review-translation">TextBlock-Test 1</target>
+					<note>Comment for TextBlock</note>
+				</trans-unit>
+			</group>
+			<group id="TextBlock2">
+				<trans-unit id="TextBlock2.$Content" translate="yes">
+					<source xml:space="preserve">TextBlock Test 2</source>
+					<target xml:space="preserve" state="needs-review-translation">TextBlock-Test 2</target>
+				</trans-unit>
+			</group>
+			<group id="Grid">
+				<group id="dxg:GridControl">
+					<group id="dxg:GridControl">
+						<group id="Columns">
+							<trans-unit id="Grid.dxg:GridControl.dxg:GridControl.Columns.Header" translate="yes">
+								<source xml:space="preserve">Test Column1</source>
+								<target xml:space="preserve" state="needs-review-translation">Test Column1</target>
+							</trans-unit>
+						</group>
+					</group>
+				</group>
+			</group>
+		</body>
+	</file>
+</xliff>

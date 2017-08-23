@@ -1,0 +1,2 @@
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /t:Clean TestWpfApplication.csproj
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /pp:MSBuldPreProcess.xml TestWpfApplication.csproj

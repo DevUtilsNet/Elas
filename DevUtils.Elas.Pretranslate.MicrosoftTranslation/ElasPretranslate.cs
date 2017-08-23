@@ -22,7 +22,6 @@ namespace DevUtils.Elas.Pretranslate.MicrosoftTranslation
 		private static DateTime _expiretTime;
 		private static readonly object SyncRoot = new object();
 
-		private bool _dirty;
 		private string _clientId;
 		private string _clientSecret;
 		
@@ -85,6 +84,13 @@ namespace DevUtils.Elas.Pretranslate.MicrosoftTranslation
 				return;
 			}
 
+			var pretranslateTask = CreateTask<Tasks.Core.ElasPretranslate>();
+
+			pretranslateTask.Files = Files;
+			pretranslateTask.ConfigurationPath = ConfigurationPath;
+
+			pretranslateTask.Execute();
+
 			var project = ProjectCollection.GlobalProjectCollection.LoadProject(ConfigurationPath);
 
 			var propVal = project.GetPropertyValue("ElasMicrosoftTranslationClientId");
@@ -119,12 +125,12 @@ namespace DevUtils.Elas.Pretranslate.MicrosoftTranslation
 			{
 				foreach (var item in xliffDocument.Files)
 				{
-					Log.LogMessage(MessageImportance.High, "\"{0}\" translate {1} -> {2} ...", taskItem, item.SourceLanguage.Name, item.TargetLanguage.Name);
+					Log.LogMessage(MessageImportance.High, "\"{0}\" translate {1} -> {2}...", item.Original, item.SourceLanguage.Name, item.TargetLanguage.Name);
 					PretranslateFile(factory, item);
 				}
 			}
 
-			if (_dirty)
+			if (xliffDocument.IsDirty)
 			{
 				xliffDocument.Save(file);
 				Log.LogMessage(MessageImportance.Low, Log.FormatString("Intermediate document \"{0}\" was updated.", taskItem));
@@ -154,18 +160,27 @@ namespace DevUtils.Elas.Pretranslate.MicrosoftTranslation
 				return args;
 			}
 
-			if (item.Target.IsShouldBeTranslated())
+			if (!string.IsNullOrEmpty(item.Source.Content) 
+				&& item.Target.IsShouldBeTranslated())
 			{
+				Log.LogMessage(MessageImportance.Low, "Id=\"{0}\" begin translation; ('{1}').", item.Id, item.Source.Content);
+
 				var response = args.Item2.GetTranslations(GetAppId(),
 					item.Source.Content,
 					args.Item1.SourceLanguage.Name,
 					args.Item1.TargetLanguage.Name, 1, args.Item3);
+
 				var trans = response.Translations.FirstOrDefault();
 				if (trans != null && item.Target.Content != trans.TranslatedText)
 				{
 					item.Target.Content = trans.TranslatedText;
 					item.Target.State = XliffTargetState.NeedsReviewTranslation;
-					_dirty = true;
+
+					Log.LogMessage(MessageImportance.Low, "Id=\"{0}\" end translate; ('{1}' -> '{2}').", item.Id, item.Source.Content, item.Target.Content);
+				}
+				else
+				{
+					Log.LogMessage(MessageImportance.Low, "Id=\"{0}\" skipped, due to already translated.", item.Id);
 				}
 			}
 			return args;

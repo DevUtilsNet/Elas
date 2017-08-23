@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xlf="urn:oasis:names:tc:xliff:document:1.2" 
+		   attributeFormDefault="unqualified" 
+		   elementFormDefault="qualified" 
+		   targetNamespace="urn:devutils:names:tc:xliff:document:1.2" 
+		   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+	<xsd:import namespace="urn:oasis:names:tc:xliff:document:1.2" />
+
+	<xsd:attribute name="absent">
+	</xsd:attribute>
+</xsd:schema>

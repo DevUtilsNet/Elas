@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns:elas="urn:devutils:names:tc:xliff:document:1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="InnerFolder1\InnerFolder2\Form1.resx" source-language="en-US" target-language="ru-RU" datatype="resx">
+		<header>
+			<tool tool-version="0.0.7.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=0.0.7.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" />
+		</header>
+		<body>
+			<group id="&gt;&gt;textEdit1">
+				<trans-unit id="&gt;&gt;textEdit1.Name" translate="no">
+					<source xml:space="preserve">textEdit1</source>
+					<target xml:space="preserve" state="translated">textEdit1</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;textEdit1.Type" translate="no">
+					<source xml:space="preserve">DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</source>
+					<target xml:space="preserve" state="translated">DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;textEdit1.Parent" translate="no">
+					<source xml:space="preserve">$this</source>
+					<target xml:space="preserve" state="translated">$this</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;textEdit1.ZOrder" translate="no">
+					<source xml:space="preserve">2</source>
+					<target xml:space="preserve" state="translated">2</target>
+				</trans-unit>
+			</group>
+			<group id="labelControl1">
+				<trans-unit id="labelControl1.Text" translate="yes">
+					<source xml:space="preserve">labelControl1</source>
+					<target xml:space="preserve" state="needs-review-translation">labelControl1</target>
+				</trans-unit>
+			</group>
+			<group id="&gt;&gt;labelControl1">
+				<trans-unit id="&gt;&gt;labelControl1.Name" translate="no">
+					<source xml:space="preserve">labelControl1</source>
+					<target xml:space="preserve" state="translated">labelControl1</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;labelControl1.Type" translate="no">
+					<source xml:space="preserve">DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</source>
+					<target xml:space="preserve" state="translated">DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;labelControl1.Parent" translate="no">
+					<source xml:space="preserve">$this</source>
+					<target xml:space="preserve" state="translated">$this</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;labelControl1.ZOrder" translate="no">
+					<source xml:space="preserve">1</source>
+					<target xml:space="preserve" state="translated">1</target>
+				</trans-unit>
+			</group>
+			<group id="label1">
+				<trans-unit id="label1.Text" translate="yes">
+					<source xml:space="preserve">label1</source>
+					<target xml:space="preserve" state="needs-review-translation">label1</target>
+				</trans-unit>
+			</group>
+			<group id="&gt;&gt;label1">
+				<trans-unit id="&gt;&gt;label1.Name" translate="no">
+					<source xml:space="preserve">label1</source>
+					<target xml:space="preserve" state="translated">label1</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;label1.Type" translate="no">
+					<source xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</source>
+					<target xml:space="preserve" state="translated">System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;label1.Parent" translate="no">
+					<source xml:space="preserve">$this</source>
+					<target xml:space="preserve" state="translated">$this</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;label1.ZOrder" translate="no">
+					<source xml:space="preserve">0</source>
+					<target xml:space="preserve" state="translated">0</target>
+				</trans-unit>
+			</group>
+			<group id="$this">
+				<trans-unit id="$this.Text" translate="yes">
+					<source xml:space="preserve">Form1</source>
+					<target xml:space="preserve" state="needs-review-translation">Form1</target>
+				</trans-unit>
+			</group>
+			<group id="&gt;&gt;$this">
+				<trans-unit id="&gt;&gt;$this.Name" translate="no">
+					<source xml:space="preserve">Form1</source>
+					<target xml:space="preserve" state="translated">Form1</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;$this.Type" translate="no">
+					<source xml:space="preserve">System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</source>
+					<target xml:space="preserve" state="translated">System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</target>
+				</trans-unit>
+			</group>
+		</body>
+	</file>
+	<file original="InnerFolder1\InnerFolder2\Form1.resx" source-language="en-US" target-language="de-DE" datatype="resx">
+		<header>
+			<tool tool-version="0.0.7.0" tool-name="ELAS" tool-company="DevUtils.Net" tool-id="DevUtils.Elas.Tasks.Core, Version=0.0.7.0, Culture=neutral, PublicKeyToken=3cae0f4d0d366709" />
+		</header>
+		<body>
+			<group id="&gt;&gt;textEdit1">
+				<trans-unit id="&gt;&gt;textEdit1.Name" translate="no">
+					<source xml:space="preserve">textEdit1</source>
+					<target xml:space="preserve" state="translated">textEdit1</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;textEdit1.Type" translate="no">
+					<source xml:space="preserve">DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</source>
+					<target xml:space="preserve" state="translated">DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;textEdit1.Parent" translate="no">
+					<source xml:space="preserve">$this</source>
+					<target xml:space="preserve" state="translated">$this</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;textEdit1.ZOrder" translate="no">
+					<source xml:space="preserve">2</source>
+					<target xml:space="preserve" state="translated">2</target>
+				</trans-unit>
+			</group>
+			<group id="labelControl1">
+				<trans-unit id="labelControl1.Text" translate="yes">
+					<source xml:space="preserve">labelControl1</source>
+					<target xml:space="preserve" state="needs-review-translation">labelControl1</target>
+				</trans-unit>
+			</group>
+			<group id="&gt;&gt;labelControl1">
+				<trans-unit id="&gt;&gt;labelControl1.Name" translate="no">
+					<source xml:space="preserve">labelControl1</source>
+					<target xml:space="preserve" state="translated">labelControl1</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;labelControl1.Type" translate="no">
+					<source xml:space="preserve">DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</source>
+					<target xml:space="preserve" state="translated">DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v13.2, Version=13.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;labelControl1.Parent" translate="no">
+					<source xml:space="preserve">$this</source>
+					<target xml:space="preserve" state="translated">$this</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;labelControl1.ZOrder" translate="no">
+					<source xml:space="preserve">1</source>
+					<target xml:space="preserve" state="translated">1</target>
+				</trans-unit>
+			</group>
+			<group id="label1">
+				<trans-unit id="label1.Text" translate="yes">
+					<source xml:space="preserve">label1</source>
+					<target xml:space="preserve" state="needs-review-translation">label1</target>
+				</trans-unit>
+			</group>
+			<group id="&gt;&gt;label1">
+				<trans-unit id="&gt;&gt;label1.Name" translate="no">
+					<source xml:space="preserve">label1</source>
+					<target xml:space="preserve" state="translated">label1</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;label1.Type" translate="no">
+					<source xml:space="preserve">System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</source>
+					<target xml:space="preserve" state="translated">System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;label1.Parent" translate="no">
+					<source xml:space="preserve">$this</source>
+					<target xml:space="preserve" state="translated">$this</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;label1.ZOrder" translate="no">
+					<source xml:space="preserve">0</source>
+					<target xml:space="preserve" state="translated">0</target>
+				</trans-unit>
+			</group>
+			<group id="$this">
+				<trans-unit id="$this.Text" translate="yes">
+					<source xml:space="preserve">Form1</source>
+					<target xml:space="preserve" state="needs-review-translation">Form1</target>
+				</trans-unit>
+			</group>
+			<group id="&gt;&gt;$this">
+				<trans-unit id="&gt;&gt;$this.Name" translate="no">
+					<source xml:space="preserve">Form1</source>
+					<target xml:space="preserve" state="translated">Form1</target>
+				</trans-unit>
+				<trans-unit id="&gt;&gt;$this.Type" translate="no">
+					<source xml:space="preserve">System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</source>
+					<target xml:space="preserve" state="translated">System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</target>
+				</trans-unit>
+			</group>
+		</body>
+	</file>
+</xliff>
